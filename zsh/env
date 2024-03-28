@@ -1,0 +1,18 @@
+export PGHOST="localhost"
+
+# elixir terminal history
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+# nodejs config for legacy-provider
+# export NODE_OPTIONS="--openssl-legacy-provider"
+
+# searchkick dependency (Rails/ethon gem)
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+## PG gem
+export PGGSSENCMODE="disable"
+
+## Rails configs
+#export WEB_CONCURRENCY=5
+#export RAILS_MAX_THREADS=6
+#export RAILS_MIN_THREADS=2

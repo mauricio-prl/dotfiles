@@ -1,0 +1,21 @@
+alias '..'='cd ..'
+
+# rails
+alias 'bx'='bundle exec'
+alias 'bxr'='bundle exec rspec'
+alias 'rs'='bx rails s'
+alias 'rc'='bx rails c -- --noautocomplete'
+alias 'rgen'='bx rails generate'
+alias 'rca'='bx rails c'
+alias 'rcu'='ggl && bundle install && bundle exec rails db:migrate && bundle exec rails data:migrate && yarn'
+alias 'solargraph-setup'='gem install solargraph && yard gems && yard config --gem-install-yri'
+
+# git
+alias 'glp'='glol'
+alias 'gdob'="git branch | grep -v "develop" | grep -v "master" | grep -v "main" | grep -v "staging" | xargs git branch -D; git fetch -p"
+alias 'code'='NODE_OPTIONS="" code'
+alias 'gu'="git shortlog | grep -E '^[^ ]'"
+
+alias 'brewcheck'='brew update && brew outdated'
+alias 'dc'='docker-compose'
+alias 'uterminals'='cp ~/.zshrc ~/terminal-settings/.zshrc && cp ~/.p10k.zsh ~/terminal-settings/.p10k.zsh && cp ~/.config/zed/keymap.json ~/terminal-settings/zed/keymap.json && cp ~/.config/zed/settings.json ~/terminal-settings/zed/settings.json'
