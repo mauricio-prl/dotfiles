@@ -18,4 +18,3 @@ alias 'gu'="git shortlog | grep -E '^[^ ]'"
 
 alias 'brewcheck'='brew update && brew outdated'
 alias 'dc'='docker-compose'
-alias 'uterminals'='cp ~/.zshrc ~/terminal-settings/.zshrc && cp ~/.p10k.zsh ~/terminal-settings/.p10k.zsh && cp ~/.config/zed/keymap.json ~/terminal-settings/zed/keymap.json && cp ~/.config/zed/settings.json ~/terminal-settings/zed/settings.json'
