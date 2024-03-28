@@ -1,0 +1,47 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-1": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-down": "editor::MoveLineDown",
+      "alt-enter": "editor::GoToDefinition",
+      "alt-shift-down": "editor::DuplicateLine",
+      "alt-up": "editor::MoveLineUp",
+      "cmd-enter": "editor::GoToDefinition",
+      "cmd-shift-c": "editor::ToggleComments",
+      "enter": "editor::ConfirmCodeAction",
+      "f9": "editor::SortLinesCaseSensitive",
+      "pagedown": "editor::MovePageDown",
+      "pageup": "editor::MovePageUp"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": [
+        "vim::SwitchMode",
+        "Normal"
+      ]
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-/": "workspace::ToggleZoom"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "backspace": "project_panel::Delete",
+      "cmd-c": "project_panel::CopyRelativePath",
+      "cmd-left": "project_panel::CollapseAllEntries",
+      "enter": "project_panel::Rename"
+    }
+  }
+]
