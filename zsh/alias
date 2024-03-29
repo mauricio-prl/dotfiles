@@ -16,5 +16,5 @@ alias 'gdob'="git branch | grep -v "develop" | grep -v "master" | grep -v "main"
 alias 'code'='NODE_OPTIONS="" code'
 alias 'gu'="git shortlog | grep -E '^[^ ]'"
 
-alias 'brewcheck'='brew update && brew outdated'
+alias 'brewup'='brew update && brew outdated'
 alias 'dc'='docker-compose'
