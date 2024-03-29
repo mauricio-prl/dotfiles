@@ -13,7 +13,9 @@
       "alt-shift-down": "editor::DuplicateLine",
       "alt-up": "editor::MoveLineUp",
       "cmd-enter": "editor::GoToDefinition",
-      "cmd-shift-c": "editor::ToggleComments",
+      "cmd-shift-c": "editor::CopyRelativePath",
+      "ctrl-cmd-c": "editor::ToggleComments",
+      "ctrl-shift-c": "editor::ToggleComments",
       "enter": "editor::ConfirmCodeAction",
       "f9": "editor::SortLinesCaseSensitive",
       "pagedown": "editor::MovePageDown",
@@ -26,8 +28,14 @@
       "j k": [
         "vim::SwitchMode",
         "Normal"
-      ]
-    },
+      ],
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "g c": "editor::ToggleComments"
+    }
   },
   {
     "context": "Terminal",
