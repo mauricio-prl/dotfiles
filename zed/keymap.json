@@ -1,5 +1,11 @@
 [
   {
+    "context": "Workspace",
+    "bindings": {
+      "alt-1": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
     "context": "Editor",
     "bindings": {
       "alt-down": "editor::MoveLineDown",
@@ -9,11 +15,12 @@
       "cmd-enter": "editor::GoToDefinition",
       "cmd-shift-c": "editor::CopyRelativePath",
       "ctrl-cmd-c": "editor::ToggleComments",
+      "ctrl-cmd-h": "pane::ActivatePrevItem",
+      "ctrl-cmd-l": "pane::ActivateNextItem",
       "ctrl-h": "project_panel::ToggleFocus",
       "ctrl-j": "terminal_panel::ToggleFocus",
+      "ctrl-k": null,
       "ctrl-shift-c": "editor::ToggleComments",
-      "ctrl-cmd-l": "pane::ActivateNextItem",
-      "ctrl-cmd-h": "pane::ActivatePrevItem",
       "f9": "editor::SortLinesCaseSensitive",
       "pagedown": "editor::MovePageDown",
       "pageup": "editor::MovePageUp"
@@ -22,10 +29,7 @@
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
-      "j k": [
-        "vim::SwitchMode",
-        "Normal"
-      ],
+      "j k": ["vim::SwitchMode", "Normal"]
     }
   },
   {
