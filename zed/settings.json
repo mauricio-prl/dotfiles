@@ -23,6 +23,7 @@
   "tab_size": 2,
   "theme": "Dracula",
   "vim_mode": true,
+  "vertical_scroll_margin": 5,
   "relative_line_numbers": true,
   "terminal": {
     "default_width": 1000,
