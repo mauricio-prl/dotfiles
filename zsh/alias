@@ -18,3 +18,4 @@ alias 'gu'="git shortlog | grep -E '^[^ ]'"
 
 alias 'brewup'='brew update && brew outdated'
 alias 'dc'='docker-compose'
+alias 'cpzsh'='cp ~/.zshrc ~/.config/zsh/dotzshrc'
