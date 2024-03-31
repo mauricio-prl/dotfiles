@@ -29,13 +29,22 @@
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
-      "j k": ["vim::SwitchMode", "Normal"]
+      "j k": [
+        "vim::SwitchMode",
+        "Normal"
+      ]
     }
   },
   {
     "context": "Editor && vim_mode == visual",
     "bindings": {
       "g c": "editor::ToggleComments"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "g c c": "editor::ToggleComments"
     }
   },
   {
