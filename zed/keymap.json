@@ -36,6 +36,12 @@
     }
   },
   {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "enter": "editor::Newline"
+    }
+  },
+  {
     "context": "Editor && vim_mode == visual",
     "bindings": {
       "g c": "editor::ToggleComments"
