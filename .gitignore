@@ -1,0 +1,9 @@
+*/**
+
+!zed/themes/*/**
+!zed/settings.json
+!zed/keymap.json
+
+!zsh/*/**
+
+!p10k/*/**
