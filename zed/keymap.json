@@ -50,7 +50,9 @@
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
-      "g c c": "editor::ToggleComments"
+      "g c c": "editor::ToggleComments",
+      "shift-h": "pane::ActivatePrevItem",
+      "shift-l": "pane::ActivateNextItem"
     }
   },
   {
