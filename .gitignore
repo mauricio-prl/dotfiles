@@ -1,6 +1,8 @@
-github-copilot
+/*
 
-!/zed/themes/*/**
+!.gitignore
+
+!/zed/themes
 !/zed/settings.json
 !/zed/keymap.json
 
