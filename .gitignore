@@ -1,9 +1,9 @@
-*/**
+github-copilot
 
-!zed/themes/*/**
-!zed/settings.json
-!zed/keymap.json
+!/zed/themes/*/**
+!/zed/settings.json
+!/zed/keymap.json
 
-!zsh/*/**
-
-!p10k/*/**
+!/zsh
+!/p10k
+!/nvim
