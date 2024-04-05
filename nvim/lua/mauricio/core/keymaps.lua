@@ -9,6 +9,7 @@ keymap.set("n", "<leader>t", "<cmd>ToggleTerm size=14<CR>", { desc = "Toggle ter
 keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFile<CR>", { desc = "Find file in tree" })
 keymap.set("n", "<leader>cc", "<cmd>set colorcolumn=100<CR>", { desc = "Enable wrapline" })
 keymap.set("n", "<leader>cx", "<cmd>set colorcolumn=0<CR>", { desc = "Disable wrapline" })
+keymap.set("n", "<leader>q", "<cmd>bd<CR>", { desc = "Close buffer" })
 
 -- copilot
 vim.keymap.set("i", "<C-Y>", 'copilot#Accept("\\<CR>")', {
