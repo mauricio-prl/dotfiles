@@ -11,6 +11,8 @@ keymap.set("n", "<leader>cc", "<cmd>set colorcolumn=100<CR>", { desc = "Enable w
 keymap.set("n", "<leader>cx", "<cmd>set colorcolumn=0<CR>", { desc = "Disable wrapline" })
 keymap.set("n", "<leader>q", "<cmd>bd<CR>", { desc = "Close buffer" })
 keymap.set("n", "<leader>hh", "<cmd>noh<CR>", { desc = "Clear highlights" })
+keymap.set("n", "<S-l>", "<S-$>", { desc = "Move to end of line" })
+keymap.set("n", "<S-h>", "0", { desc = "Move to beginning of line" })
 
 -- copilot
 vim.keymap.set("i", "<C-Y>", 'copilot#Accept("\\<CR>")', {
