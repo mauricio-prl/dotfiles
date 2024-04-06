@@ -38,7 +38,8 @@
   {
     "context": "Editor && showing_completions",
     "bindings": {
-      "enter": "editor::Newline"
+      "enter": "editor::Newline",
+      "ctrl-y": "editor::ConfirmCompletion"
     }
   },
   {
@@ -51,8 +52,10 @@
     "context": "Editor && vim_mode == normal",
     "bindings": {
       "g c c": "editor::ToggleComments",
-      "shift-h": "pane::ActivatePrevItem",
-      "shift-l": "pane::ActivateNextItem"
+      "alt-h": "pane::ActivatePrevItem",
+      "alt-l": "pane::ActivateNextItem",
+      "shift-h": "editor::MoveToBeginningOfLine",
+      "shift-l": "editor::MoveToEndOfLine"
     }
   },
   {
