@@ -16,6 +16,7 @@
   "formatter": "language_server",
   "hard_tabs": false,
   "preferred_line_length": 9999,
+  "hover_popover_enabled": true,
   "remove_trailing_whitespace_on_save": true,
   "show_copilot_suggestions": true,
   "show_whitespaces": "all",
@@ -23,8 +24,14 @@
   "tab_size": 2,
   "theme": "Dracula",
   "vim_mode": true,
-  "vertical_scroll_margin": 5,
+  "vertical_scroll_margin": 10,
   "relative_line_numbers": true,
+  "inlay_hints": {
+    "enabled": true,
+    "show_other_hints": true,
+    "show_parameter_hints": true,
+    "show_type_hints": true
+  },
   "terminal": {
     "default_width": 1000,
     "dock": "bottom"

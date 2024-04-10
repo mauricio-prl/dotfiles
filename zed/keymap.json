@@ -10,7 +10,7 @@
     "bindings": {
       "alt-down": "editor::MoveLineDown",
       "alt-enter": "editor::GoToDefinition",
-      "alt-shift-down": "editor::DuplicateLine",
+      "alt-shift-down": "editor::DuplicateLineDown",
       "alt-up": "editor::MoveLineUp",
       "cmd-enter": "editor::GoToDefinition",
       "cmd-shift-c": "editor::CopyRelativePath",
@@ -58,6 +58,12 @@
       "shift-l": "editor::MoveToEndOfLine"
     }
   },
+  // {
+  //   "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+  //   "bindings": {
+  //     "space e": "project_panel::ToggleFocus"
+  //   }
+  // },
   {
     "context": "Terminal",
     "bindings": {
