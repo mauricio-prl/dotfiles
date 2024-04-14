@@ -51,11 +51,15 @@
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
-      "g c c": "editor::ToggleComments",
       "alt-h": "pane::ActivatePrevItem",
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
       "alt-l": "pane::ActivateNextItem",
+      "g c c": "editor::ToggleComments",
+      "shift-alt-j": "editor::DuplicateLineDown",
       "shift-h": "editor::MoveToBeginningOfLine",
-      "shift-l": "editor::MoveToEndOfLine"
+      "shift-l": "editor::MoveToEndOfLine",
+      "g r": "editor::FindAllReferences"
     }
   },
   // {
