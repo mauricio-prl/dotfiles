@@ -29,8 +29,8 @@
   "inlay_hints": {
     "enabled": true,
     "show_other_hints": true,
-    "show_parameter_hints": true,
-    "show_type_hints": true
+    "show_parameter_hints": false,
+    "show_type_hints": false
   },
   "terminal": {
     "default_width": 1000,
