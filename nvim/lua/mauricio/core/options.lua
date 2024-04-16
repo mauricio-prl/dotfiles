@@ -34,6 +34,13 @@ opt.undofile = true
 opt.ignorecase = true
 opt.smartcase = true
 
+-- Indentation
+opt.autoindent = true
+opt.smartindent = true
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.shiftwidth = 2
+
 -- Keep signcolumn on by default
 opt.signcolumn = "yes"
 
