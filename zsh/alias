@@ -21,4 +21,7 @@ alias 'dc'='docker-compose'
 alias 'cpzsh'='cp ~/.zshrc ~/.config/zsh/dotzshrc'
 alias 'resetnvimplugins'='rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim'
 alias 'touchzshrc'='cp ~/.config/zsh/dotzshrc ~/.zshrc'
+
+# tmux
 alias 'tx'='tmux'
+alias 'txa'='tmux attach-session -t'
