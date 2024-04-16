@@ -16,15 +16,23 @@ return {
   dependencies = "nvim-tree/nvim-web-devicons",
   opts = {
     options = {
+      diagnostics_indicator = function(count, level, diagnostics_dict, context)
+        local s = " "
+        for e, n in pairs(diagnostics_dict) do
+          local sym = e == "error" and " " or (e == "warning" and " " or "")
+          s = s .. n .. sym
+        end
+        return s
+      end,
       always_show_bufferline = false,
-      offsets = {
-        {
-          filetype = "neo-tree",
-          text = "Neo-tree",
-          highlight = "Directory",
-          text_align = "left",
-        },
-      },
+      -- offsets = {
+      --   {
+      --     filetype = "nvim-tree",
+      --     text = "Nvim-tree",
+      --     highlight = "Directory",
+      --     text_align = "left",
+      --   },
+      -- },
     },
   },
 }
