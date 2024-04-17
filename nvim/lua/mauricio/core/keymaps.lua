@@ -14,6 +14,7 @@ keymap.set("n", "<leader>hh", "<cmd>noh<CR>", { desc = "Clear highlights" })
 keymap.set("n", "<S-l>", "<S-$>", { desc = "Move to end of line" })
 keymap.set("n", "<S-h>", "<S-^>", { desc = "Move to beginning of line" })
 keymap.set("n", "<A-j>", "yyp", { desc = "Duplicate line" })
+keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
 
 -- copilot
 vim.keymap.set("i", "<C-Y>", 'copilot#Accept("\\<CR>")', {
