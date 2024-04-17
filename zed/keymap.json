@@ -21,9 +21,10 @@
       "ctrl-j": "terminal_panel::ToggleFocus",
       "ctrl-k": null,
       "ctrl-shift-c": "editor::ToggleComments",
+      "ctrl-y": "editor::AcceptPartialCopilotSuggestion",
       "f9": "editor::SortLinesCaseSensitive",
       "pagedown": "editor::MovePageDown",
-      "pageup": "editor::MovePageUp"
+      "pageup": "editor::MovePageUp",
     }
   },
   {
