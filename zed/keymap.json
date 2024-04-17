@@ -24,7 +24,7 @@
       "ctrl-y": "editor::AcceptPartialCopilotSuggestion",
       "f9": "editor::SortLinesCaseSensitive",
       "pagedown": "editor::MovePageDown",
-      "pageup": "editor::MovePageUp",
+      "pageup": "editor::MovePageUp"
     }
   },
   {
@@ -46,7 +46,9 @@
   {
     "context": "Editor && vim_mode == visual",
     "bindings": {
-      "g c": "editor::ToggleComments"
+      "g c": "editor::ToggleComments",
+      "shift-l": "editor::SelectToEndOfLine",
+      "shift-h": "editor::SelectToBeginningOfLine"
     }
   },
   {
