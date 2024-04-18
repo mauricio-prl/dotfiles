@@ -16,6 +16,7 @@
   "formatter": "language_server",
   "hard_tabs": false,
   "hover_popover_enabled": true,
+  "line_indicator_format": "short",
   "preferred_line_length": 9999,
   "relative_line_numbers": true,
   "remove_trailing_whitespace_on_save": true,
