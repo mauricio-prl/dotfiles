@@ -56,7 +56,7 @@
         "editor.background": "#282a37",
         "editor.gutter.background": "#282a35ff",
         "editor.subheader.background": "#353746ff",
-        "editor.active_line.background": "#2c2f3e",
+        "editor.active_line.background": "#3e4257",
         "editor.highlighted_line.background": "#44475aff",
         "editor.line_number": "#6272a4ff",
         "editor.active_line_number": "#f8f8f2ff",
@@ -293,7 +293,7 @@
             "font_weight": null
           },
           "punctuation.delimiter": {
-            "color": "#fff",
+            "color": "#f977c3",
             "font_style": null,
             "font_weight": null
           },
