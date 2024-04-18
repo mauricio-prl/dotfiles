@@ -69,3 +69,4 @@ opt.scrolloff = 10
 opt.wrap = false
 
 opt.expandtab = true
+opt.autowriteall = true
