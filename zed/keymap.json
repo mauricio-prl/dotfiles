@@ -46,9 +46,11 @@
   {
     "context": "Editor && vim_mode == visual",
     "bindings": {
+      "alt-shift-j": "editor::DuplicateLineDown",
+      "alt-shift-k": "editor::DuplicateLineUp",
       "g c": "editor::ToggleComments",
-      "shift-l": "editor::SelectToEndOfLine",
-      "shift-h": "editor::SelectToBeginningOfLine"
+      "shift-h": "editor::SelectToBeginningOfLine",
+      "shift-l": "editor::SelectToEndOfLine"
     }
   },
   {
@@ -58,11 +60,12 @@
       "alt-j": "editor::MoveLineDown",
       "alt-k": "editor::MoveLineUp",
       "alt-l": "pane::ActivateNextItem",
+      "ctrl-a": "editor::SelectAll",
       "g c c": "editor::ToggleComments",
+      "g r": "editor::FindAllReferences",
       "shift-alt-j": "editor::DuplicateLineDown",
       "shift-h": "editor::MoveToBeginningOfLine",
-      "shift-l": "editor::MoveToEndOfLine",
-      "g r": "editor::FindAllReferences"
+      "shift-l": "editor::MoveToEndOfLine"
     }
   },
   // {
@@ -89,7 +92,8 @@
       "cmd-h": "project_panel::CollapseAllEntries",
       "cmd-left": "project_panel::CollapseAllEntries",
       "ctrl-l": "project_panel::ToggleFocus",
-      "enter": "project_panel::Rename"
+      "enter": "project_panel::Open",
+      "space": "project_panel::Rename"
     }
   }
 ]
