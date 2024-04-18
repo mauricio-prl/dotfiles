@@ -46,6 +46,8 @@
   {
     "context": "Editor && vim_mode == visual",
     "bindings": {
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
       "alt-shift-j": "editor::DuplicateLineDown",
       "alt-shift-k": "editor::DuplicateLineUp",
       "g c": "editor::ToggleComments",
