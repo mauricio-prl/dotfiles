@@ -52,10 +52,11 @@ return {
     -- set keymaps
     local keymap = vim.keymap
 
-    keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
+    keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>")
     keymap.set("n", "<leader>fe", "<cmd>NvimTreeFindFileToggle<CR>")
-    keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>")
+    keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse all" })
     keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>")
+    keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFile<CR>", { desc = "Find file in tree" })
 
     function _G.set_terminal_keymaps()
       local opts = { buffer = 0 }

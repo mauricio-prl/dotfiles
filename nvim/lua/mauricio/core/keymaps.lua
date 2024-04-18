@@ -16,10 +16,8 @@ keymap.set("n", "<S-l>", "<S-$>", { desc = "Move to end of line" })
 keymap.set("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "Open Lazy panel" })
 keymap.set("n", "<leader>cc", "<cmd>set colorcolumn=100<CR>", { desc = "Enable wrapline" })
 keymap.set("n", "<leader>cx", "<cmd>set colorcolumn=0<CR>", { desc = "Disable wrapline" })
-keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFile<CR>", { desc = "Find file in tree" })
 keymap.set("n", "<leader>hh", "<cmd>noh<CR>", { desc = "Clear highlights" })
 keymap.set("n", "<leader>q", "<cmd>bd<CR>", { desc = "Close buffer" })
-keymap.set("n", "<leader>t", "<cmd>ToggleTerm size=14<CR>", { desc = "Toggle terminal" })
 
 -- visual mode
 keymap.set("v", "<S-h>", "<S-^>", { desc = "Select to beginning of line" })
@@ -30,4 +28,3 @@ vim.keymap.set("i", "<C-Y>", 'copilot#Accept("\\<CR>")', {
   expr = true,
   replace_keycodes = false,
 })
-vim.g.copilot_no_tab_map = true
