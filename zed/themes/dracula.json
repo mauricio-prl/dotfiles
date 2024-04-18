@@ -136,19 +136,19 @@
         "warning.border": "#5d4c2fff",
         "players": [
           {
-            "cursor": "#ddddddd8",
-            "background": "#ddddddd8",
-            "selection": "#4d5168"
+            "cursor": "#e6e6e6",
+            "background": "#dee8f433",
+            "selection": "#dee8f433"
+          },
+          {
+            "cursor": "#50fa7bff",
+            "background": "#50fa7bff",
+            "selection": "#50fa7b33"
           },
           {
             "cursor": "#ff79c6ff",
             "background": "#ff79c6ff",
             "selection": "#ff79c633"
-          },
-          {
-            "cursor": "#bd93f9ff",
-            "background": "#bd93f9ff",
-            "selection": "#bd93f933"
           },
           {
             "cursor": "#f1fa8cff",
@@ -158,7 +158,7 @@
           {
             "cursor": "#8be9fdff",
             "background": "#8be9fdff",
-            "selection": "#6eb4bf33"
+            "selection": "#8be9fd33"
           },
           {
             "cursor": "#ffb86cff",
@@ -293,11 +293,12 @@
             "font_weight": null
           },
           "punctuation.delimiter": {
-            "color": "#f977c3",
+            "color": "#f8f8f2ff",
             "font_style": null,
             "font_weight": null
           },
           "punctuation.list_marker": {
+            "color": "#8be9fdff",
             "font_style": null,
             "font_weight": null
           },
@@ -351,7 +352,7 @@
             "font_weight": null
           },
           "variable": {
-            "color": "#f8f8f2ff",
+            "color": "#ffb86b",
             "font_style": null,
             "font_weight": null
           },
