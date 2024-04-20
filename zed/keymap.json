@@ -58,6 +58,7 @@
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
+      "K": "editor::Hover",
       "alt-h": "pane::ActivatePrevItem",
       "alt-j": "editor::MoveLineDown",
       "alt-k": "editor::MoveLineUp",
