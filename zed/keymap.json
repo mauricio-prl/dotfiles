@@ -96,7 +96,8 @@
       "cmd-h": "project_panel::CollapseAllEntries",
       "cmd-left": "project_panel::CollapseAllEntries",
       "ctrl-l": "project_panel::ToggleFocus",
-      "enter": "project_panel::Open",
+      "enter": "project_panel::OpenPermanent",
+      "shift-enter": "project_panel::Open",
       "space": "project_panel::Rename"
     }
   }
