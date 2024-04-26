@@ -64,6 +64,8 @@
       "alt-k": "editor::MoveLineUp",
       "alt-l": "pane::ActivateNextItem",
       "ctrl-a": "editor::SelectAll",
+      "ctrl-shift-h": "pane::ActivatePrevItem",
+      "ctrl-shift-l": "pane::ActivateNextItem",
       "g b": "editor::ToggleGitBlame",
       "g c c": "editor::ToggleComments",
       "g r": "editor::FindAllReferences",
