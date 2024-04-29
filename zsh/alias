@@ -16,12 +16,13 @@ alias 'gdob'="git branch | grep -v "develop" | grep -v "master" | grep -v "main"
 alias 'code'='NODE_OPTIONS="" code'
 alias 'gu'="git shortlog | grep -E '^[^ ]'"
 
+# tmux
+alias 'tx'='tmux'
+alias 'txa'='tmux attach-session -t'
+
+# misc
 alias 'brewup'='brew update && brew outdated'
 alias 'dc'='docker-compose'
 alias 'cpzsh'='cp ~/.zshrc ~/.config/zsh/dotzshrc'
 alias 'resetnvimplugins'='rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim'
 alias 'touchzshrc'='cp ~/.config/zsh/dotzshrc ~/.zshrc'
-
-# tmux
-alias 'tx'='tmux'
-alias 'txa'='tmux attach-session -t'
