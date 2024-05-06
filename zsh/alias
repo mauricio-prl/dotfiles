@@ -26,3 +26,8 @@ alias 'dc'='docker-compose'
 alias 'cpzsh'='cp ~/.zshrc ~/.config/zsh/dotzshrc'
 alias 'resetnvimplugins'='rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim'
 alias 'touchzshrc'='cp ~/.config/zsh/dotzshrc ~/.zshrc'
+
+# eza
+alias 'ls'='eza -G'
+alias 'lsl'='eza -1 -l -x'
+alias 'lsa'='eza -1 -l -x -a'
