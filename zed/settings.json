@@ -35,6 +35,7 @@
     "show_type_hints": false
   },
   "terminal": {
+    "copy_on_select": true,
     "default_width": 1000,
     "dock": "bottom"
   },
