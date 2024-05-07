@@ -50,71 +50,73 @@
       }
     }
   },
-  "JavaScript": {
-    "format_on_save": {
-      "external": {
-        "command": "prettier",
-        "arguments": [
-          "--stdin-filepath",
-          "{buffer_path}"
-        ]
+  "language_overrides": {
+    "JavaScript": {
+      "format_on_save": {
+        "external": {
+          "command": "prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
       }
-    }
-  },
-  "TypeScript": {
-    "format_on_save": {
-      "external": {
-        "command": "prettier",
-        "arguments": [
-          "--stdin-filepath",
-          "{buffer_path}"
-        ]
+    },
+    "TypeScript": {
+      "format_on_save": {
+        "external": {
+          "command": "prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
       }
-    }
-  },
-  "Markdown": {
-    "format_on_save": {
-      "external": {
-        "command": "prettier",
-        "arguments": [
-          "--stdin-filepath",
-          "{buffer_path}"
-        ]
+    },
+    "Markdown": {
+      "format_on_save": {
+        "external": {
+          "command": "prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
       }
-    }
-  },
-  "TSX": {
-    "format_on_save": {
-      "external": {
-        "command": "prettier",
-        "arguments": [
-          "--stdin-filepath",
-          "{buffer_path}"
-        ]
+    },
+    "TSX": {
+      "format_on_save": {
+        "external": {
+          "command": "prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
       }
-    }
-  },
-  "CSS": {
-    "format_on_save": {
-      "external": {
-        "command": "prettier",
-        "arguments": [
-          "--stdin-filepath",
-          "{buffer_path}"
-        ]
+    },
+    "CSS": {
+      "format_on_save": {
+        "external": {
+          "command": "prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
       }
-    }
-  },
-  "Elixir": {
-    "format_on_save": {
-      "external": {
-        "command": "mix",
-        "arguments": [
-          "format",
-          "--stdin-filename",
-          "{buffer_path}",
-          "-"
-        ]
+    },
+    "Elixir": {
+      "format_on_save": {
+        "external": {
+          "command": "mix",
+          "arguments": [
+            "format",
+            "--stdin-filename",
+            "{buffer_path}",
+            "-"
+          ]
+        }
       }
     }
   }
