@@ -48,6 +48,11 @@
         "diagnostics": true,
         "formatting": true
       }
+    },
+    "elixir-ls": {
+      "settings": {
+        "dialyzerEnabled": false
+      }
     }
   },
   "language_overrides": {

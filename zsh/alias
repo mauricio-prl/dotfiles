@@ -30,4 +30,4 @@ alias 'touchzshrc'='cp ~/.config/zsh/dotzshrc ~/.zshrc'
 # eza
 alias 'ls'='eza -G'
 alias 'lsl'='eza -1 -l -x'
-alias 'lsa'='eza -1 -l -x -a'
+alias 'lsa'='eza -a -1 -l -x'
