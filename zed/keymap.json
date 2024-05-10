@@ -95,8 +95,8 @@
     "bindings": {
       "backspace": "project_panel::Delete",
       "cmd-c": "project_panel::CopyRelativePath",
-      "cmd-h": "project_panel::CollapseAllEntries",
       "cmd-left": "project_panel::CollapseAllEntries",
+      "ctrl-h": "project_panel::CollapseAllEntries",
       "ctrl-j": "terminal_panel::ToggleFocus",
       "ctrl-l": "project_panel::ToggleFocus",
       "enter": "project_panel::OpenPermanent",
