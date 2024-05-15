@@ -84,10 +84,11 @@
     "context": "Terminal",
     "bindings": {
       "cmd-/": "workspace::ToggleZoom",
-      "ctrl-h": "project_panel::ToggleFocus",
-      "ctrl-k": "terminal_panel::ToggleFocus",
+      "ctrl-cmd-h": "pane::ActivatePrevItem",
       "ctrl-cmd-l": "pane::ActivateNextItem",
-      "ctrl-cmd-h": "pane::ActivatePrevItem"
+      "ctrl-h": "project_panel::ToggleFocus",
+      "ctrl-j": null,
+      "ctrl-k": "terminal_panel::ToggleFocus"
     }
   },
   {
