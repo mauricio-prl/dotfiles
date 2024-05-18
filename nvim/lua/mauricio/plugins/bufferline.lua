@@ -25,14 +25,14 @@ return {
         return s
       end,
       always_show_bufferline = false,
-      -- offsets = {
-      --   {
-      --     filetype = "nvim-tree",
-      --     text = "Nvim-tree",
-      --     highlight = "Directory",
-      --     text_align = "left",
-      --   },
-      -- },
+      offsets = {
+        {
+          filetype = "nvim-tree",
+          text = "Nvim-tree",
+          highlight = "Directory",
+          text_align = "left",
+        },
+      },
     },
   },
 }
