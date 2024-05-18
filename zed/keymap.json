@@ -74,12 +74,6 @@
       "shift-l": "editor::MoveToEndOfLine"
     }
   },
-  // {
-  //   "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
-  //   "bindings": {
-  //     "space e": "project_panel::ToggleFocus"
-  //   }
-  // },
   {
     "context": "Terminal",
     "bindings": {
