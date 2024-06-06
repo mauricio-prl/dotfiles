@@ -28,6 +28,9 @@
   "ui_font_family": "FiraCode Nerd Font",
   "vertical_scroll_margin": 10,
   "vim_mode": true,
+  "indent_guides": {
+    "enabled": false
+  },
   "inlay_hints": {
     "enabled": true,
     "show_other_hints": true,
@@ -39,7 +42,9 @@
     "default_width": 1000,
     "dock": "bottom"
   },
-  "wrap_guides": [100],
+  "wrap_guides": [
+    100
+  ],
   "lsp": {
     "solargraph": {
       "initialization_options": {
@@ -58,7 +63,10 @@
       "format_on_save": {
         "external": {
           "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
         }
       }
     },
@@ -66,7 +74,10 @@
       "format_on_save": {
         "external": {
           "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
         }
       }
     },
@@ -74,7 +85,10 @@
       "format_on_save": {
         "external": {
           "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
         }
       }
     },
@@ -82,7 +96,10 @@
       "format_on_save": {
         "external": {
           "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
         }
       }
     },
@@ -90,7 +107,10 @@
       "format_on_save": {
         "external": {
           "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
         }
       }
     },
@@ -98,7 +118,12 @@
       "format_on_save": {
         "external": {
           "command": "mix",
-          "arguments": ["format", "--stdin-filename", "{buffer_path}", "-"]
+          "arguments": [
+            "format",
+            "--stdin-filename",
+            "{buffer_path}",
+            "-"
+          ]
         }
       }
     }
