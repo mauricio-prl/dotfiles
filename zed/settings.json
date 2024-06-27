@@ -20,7 +20,7 @@
   "preferred_line_length": 9999,
   "relative_line_numbers": true,
   "remove_trailing_whitespace_on_save": true,
-  "show_copilot_suggestions": true,
+  "show_inline_suggestions": true,
   "show_whitespaces": "all",
   "soft_wrap": "none",
   "tab_size": 2,
@@ -36,6 +36,9 @@
     "show_other_hints": true,
     "show_parameter_hints": false,
     "show_type_hints": false
+  },
+  "inline_completions": {
+    "enabled": true
   },
   "terminal": {
     "copy_on_select": true,
@@ -58,7 +61,7 @@
       }
     }
   },
-  "language_overrides": {
+  "languages": {
     "JavaScript": {
       "format_on_save": {
         "external": {
