@@ -49,6 +49,18 @@
     100
   ],
   "lsp": {
+    // "ruby-lsp": {
+    //   "initialization_options": {
+    //     "enabledFeatures": {
+    //       "diagnostics": false
+    //     }
+    //   }
+    // },
+    "rubocop": {
+      "initialization_options": {
+        "safeAutocorrect": false
+      }
+    },
     "solargraph": {
       "initialization_options": {
         "diagnostics": true,
@@ -62,6 +74,14 @@
     }
   },
   "languages": {
+    "Ruby": {
+      "language_servers": [
+        "!rubocop",
+        "!ruby-lsp",
+        "solargraph",
+        "..."
+      ]
+    },
     "JavaScript": {
       "format_on_save": {
         "external": {
