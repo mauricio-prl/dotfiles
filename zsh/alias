@@ -1,14 +1,13 @@
 alias '..'='cd ..'
 
 # rails
-alias 'bx'='bundle exec'
-alias 'bxr'='bundle exec rspec'
-alias 'rs'='DISABLE_SPRING=1 bundle exec rails s'
-alias 'rc'='DISABLE_SPRING=1 bundle exec rails c -- --noautocomplete'
+alias 'bx'='DISABLE_SPRING=1 bundle exec'
+alias 'bxr'='bx rspec'
+alias 'rs'='bx rails s'
+alias 'rc'='bx rails c -- --noautocomplete'
 # alias 'dsrc'='DISABLE_SPRING=1 bx rails c -- --noautocomplete'
 alias 'rgen'='bx rails generate'
-alias 'rca'='bx rails c'
-alias 'rcu'='ggl && bundle install && bundle exec rails db:migrate && bundle exec rails data:migrate && yarn'
+alias 'rcu'='ggl && DISABLE_SPRING=1 bundle install && bx rails db:migrate && bx rails data:migrate && yarn'
 alias 'solargraph-setup'='gem install solargraph && yard gems && yard config --gem-install-yri'
 
 # git
