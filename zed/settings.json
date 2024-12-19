@@ -69,6 +69,12 @@
       }
     },
     "solargraph": {
+      "binary": {
+        "path": "/Users/mauriciolima/.asdf/shims/solargraph",
+        "arguments": [
+          "stdio"
+        ]
+      },
       "initialization_options": {
         "diagnostics": true,
         "formatting": true
@@ -86,7 +92,6 @@
         "!rubocop",
         "!ruby-lsp",
         "solargraph",
-        "tailwindcss-language-server",
         "..."
       ]
     },
