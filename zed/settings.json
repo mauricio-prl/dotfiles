@@ -31,7 +31,7 @@
   "show_whitespaces": "all",
   "soft_wrap": "none",
   "tab_size": 2,
-  "theme": "Dracula",
+  "theme": "Dracula Custom",
   "ui_font_family": "FiraCode Nerd Font",
   "vertical_scroll_margin": 10,
   "vim_mode": true,
