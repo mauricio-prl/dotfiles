@@ -95,6 +95,25 @@
         "..."
       ]
     },
+    "Elixir": {
+      "language_servers": [
+        "next-ls",
+        "!lexical",
+        "!elixir-ls",
+        "..."
+      ]
+      // "format_on_save": {
+      //   "external": {
+      //     "command": "mix",
+      //     "arguments": [
+      //       "format",
+      //       "--stdin-filename",
+      //       "{buffer_path}",
+      //       "-"
+      //     ]
+      //   }
+      // }
+    },
     "JavaScript": {
       "format_on_save": {
         "external": {
@@ -150,18 +169,5 @@
         }
       }
     },
-    "Elixir": {
-      "format_on_save": {
-        "external": {
-          "command": "mix",
-          "arguments": [
-            "format",
-            "--stdin-filename",
-            "{buffer_path}",
-            "-"
-          ]
-        }
-      }
-    }
   }
 }
