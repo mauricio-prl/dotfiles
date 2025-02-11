@@ -17,3 +17,7 @@ export PGGSSENCMODE="disable"
 #export WEB_CONCURRENCY=5
 #export RAILS_MAX_THREADS=6
 #export RAILS_MIN_THREADS=2
+
+# ASDF
+export ASDF_DATA_DIR="/Users/mauriciolima/.asdf"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
