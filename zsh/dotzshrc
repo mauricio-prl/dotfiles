@@ -9,6 +9,3 @@ source $HOME/.config/zsh/functions
 source $HOME/.config/zsh/zinit
 source $HOME/.config/zsh/direnv
 source $HOME/.config/p10k/.p10k.zsh
-
-### ASDF
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
