@@ -7,10 +7,13 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
   "assistant": {
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-latest"
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
     },
     "version": "2"
   },
@@ -44,7 +47,7 @@
     "show_parameter_hints": false,
     "show_type_hints": false
   },
-  "inline_completions": {
+  "edit_predictions": {
     "enabled": true
   },
   "terminal": {
