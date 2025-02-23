@@ -1,13 +1,13 @@
 # Personal settings:
+background-opacity = "0.97"
+confirm-close-surface = false
 font-family = "FiraCode Nerd Font"
 font-size = 14
+macos-titlebar-proxy-icon = hidden
 theme = "catppuccin-macchiato"
-background-opacity = "0.97"
+title = " "
 window-padding-x = 10
 window-save-state = always
-title = " "
-macos-titlebar-proxy-icon = hidden
-confirm-close-surface = false
 
 # Keybindings:
 keybind = ctrl+cmd+1=new_tab
