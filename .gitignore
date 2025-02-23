@@ -9,6 +9,6 @@
 !/zsh
 !/p10k
 !/tmux/tmux.conf
-!/nvim
 
-!/iterm2/themes
+!/nvim
+!/ghostty
