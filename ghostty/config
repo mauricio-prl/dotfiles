@@ -1,13 +1,15 @@
 # Personal settings:
 background-opacity = "0.97"
-confirm-close-surface = false
+confirm-close-surface = "false"
 font-family = "FiraCode Nerd Font"
-font-size = 14
-macos-titlebar-proxy-icon = hidden
+font-size = "14"
+macos-titlebar-proxy-icon = "hidden"
 theme = "catppuccin-macchiato"
-title = " "
-window-padding-x = 10
-window-save-state = always
+# title = " "
+window-padding-x = "10"
+window-save-state = "always"
+window-inherit-working-directory = "false"
 
 # Keybindings:
-keybind = ctrl+cmd+1=new_tab
+keybind = "ctrl+cmd+1=new_tab"
+keybind = "ctrl+r=reload_config"
