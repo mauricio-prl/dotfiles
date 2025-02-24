@@ -1,5 +1,6 @@
-# Personal settings:
-background-opacity = "0.97"
+# Settings:
+background-opacity = "0.9"
+background-blur = "true"
 confirm-close-surface = "false"
 font-family = "FiraCode Nerd Font"
 font-size = "14"
