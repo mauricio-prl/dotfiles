@@ -5,7 +5,7 @@ plugins=(git)
 source $HOME/.config/zsh/env
 source $ZSH/oh-my-zsh.sh
 source $HOME/.config/zsh/alias
-source $HOME/.config/zsh/functions
+source $HOME/.config/zsh/functions.sh
 source $HOME/.config/zsh/zinit
 source $HOME/.config/zsh/direnv
 source $HOME/.config/p10k/.p10k.zsh
