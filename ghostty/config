@@ -2,7 +2,7 @@
 background-opacity = "0.9"
 background-blur = "true"
 confirm-close-surface = "false"
-cursor-style= "block"
+cursor-style= "block_hollow"
 font-family = "FiraCode Nerd Font"
 font-size = "14"
 macos-titlebar-proxy-icon = "hidden"

@@ -22,7 +22,7 @@
   "base_keymap": "VSCode",
   "buffer_font_family": "FiraCode Nerd Font",
   "buffer_font_size": 14.5,
-  "cursor_shape": "block",
+  "cursor_shape": "hollow",
   "format_on_save": "on",
   // "format_on_save": "off",
   "formatter": "language_server",
