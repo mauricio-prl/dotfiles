@@ -50,6 +50,7 @@
     "show_type_hints": false
   },
   "edit_predictions": {
+    "mode": "eager",
     "enabled": true
   },
   "terminal": {
