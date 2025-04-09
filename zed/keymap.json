@@ -61,7 +61,7 @@
       "alt-k": "editor::MoveLineUp",
       "alt-l": "pane::ActivateNextItem",
       "ctrl-a": "editor::SelectAll",
-      "g b": "editor::ToggleGitBlame",
+      "g b": "git::Blame",
       "g c c": "editor::ToggleComments",
       "g r": "editor::FindAllReferences",
       "shift-alt-j": "editor::DuplicateLineDown",
