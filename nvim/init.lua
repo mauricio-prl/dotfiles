@@ -1,6 +1,17 @@
 require("mauricio.core")
 require("mauricio.lazy")
 
+-- clearn bufferlines on startup
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      if not vim.api.nvim_buf_is_loaded(buf) or not vim.api.nvim_buf_is_valid(buf) then
+        vim.api.nvim_buf_delete(buf, { force = true })
+      end
+    end
+  end,
+})
+
 -- Ruby LSP
 -- textDocument/diagnostic support until 0.10.0 is released
 -- _timers = {}
