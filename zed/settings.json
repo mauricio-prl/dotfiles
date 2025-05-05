@@ -9,14 +9,23 @@
 {
   "icon_theme": "Catppuccin Macchiato",
   "features": {
-    "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "zed",
+    "copilot": {
+      "enabled": true
+    }
   },
   "assistant": {
+    "version": "2",
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-latest"
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
     },
-    "version": "2"
+    "inline_alternatives": [
+      {
+        "provider": "copilot_chat",
+        "model": "claude-3-7-sonnet-latest"
+      }
+    ]
   },
   "autosave": "on_window_change",
   "base_keymap": "VSCode",
@@ -58,9 +67,7 @@
     "default_width": 1000,
     "dock": "bottom"
   },
-  "wrap_guides": [
-    100
-  ],
+  "wrap_guides": [100],
   "lsp": {
     // "ruby-lsp": {
     //   "initialization_options": {
@@ -77,9 +84,7 @@
     "solargraph": {
       "binary": {
         "path": "/Users/mauriciolima/.asdf/shims/solargraph",
-        "arguments": [
-          "stdio"
-        ]
+        "arguments": ["stdio"]
       },
       "initialization_options": {
         "diagnostics": true,
@@ -94,20 +99,10 @@
   },
   "languages": {
     "Ruby": {
-      "language_servers": [
-        "!rubocop",
-        "!ruby-lsp",
-        "solargraph",
-        "..."
-      ]
+      "language_servers": ["!rubocop", "!ruby-lsp", "solargraph", "..."]
     },
     "Elixir": {
-      "language_servers": [
-        "next-ls",
-        "!lexical",
-        "!elixir-ls",
-        "..."
-      ]
+      "language_servers": ["next-ls", "!lexical", "!elixir-ls", "..."]
       // "format_on_save": {
       //   "external": {
       //     "command": "mix",
@@ -124,10 +119,7 @@
       "format_on_save": {
         "external": {
           "command": "prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
         }
       }
     },
@@ -135,10 +127,7 @@
       "format_on_save": {
         "external": {
           "command": "prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
         }
       }
     },
@@ -146,10 +135,7 @@
       "format_on_save": {
         "external": {
           "command": "prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
         }
       }
     },
@@ -157,10 +143,7 @@
       "format_on_save": {
         "external": {
           "command": "prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
         }
       }
     },
@@ -168,10 +151,7 @@
       "format_on_save": {
         "external": {
           "command": "prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
         }
       }
     },
@@ -179,10 +159,7 @@
       "format_on_save": {
         "external": {
           "command": "prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
         }
       }
     }
