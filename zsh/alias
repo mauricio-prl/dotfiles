@@ -9,7 +9,7 @@ alias 'solargraph-setup'='gem install solargraph && yard gems && yard config --g
 
 # git
 alias 'glp'='glol'
-alias 'gdob'="git branch | grep -v "develop" | grep -v "master" | grep -v "main" | grep -v "staging" | xargs git branch -D; git fetch -p"
+alias 'gdob'='git branch | grep -v develop | grep -v master | grep -v main | grep -v staging | xargs git branch -D; git fetch -p'
 alias 'code'='NODE_OPTIONS="" code'
 alias 'gu'="git shortlog | grep -E '^[^ ]'"
 
