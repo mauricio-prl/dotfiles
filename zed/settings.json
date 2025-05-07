@@ -11,7 +11,7 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
-  "assistant": {
+  "agent": {
     "version": "2",
     "default_model": {
       "provider": "copilot_chat",
