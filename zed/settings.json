@@ -9,13 +9,19 @@
 {
   "icon_theme": "Catppuccin Macchiato",
   "features": {
-    "edit_prediction_provider": "zed"
+    // "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "copilot"
   },
   "agent": {
+    "always_allow_tool_actions": true,
     "version": "2",
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4o"
+      "model": "claude-sonnet-4"
     }
   },
   "autosave": "on_window_change",
@@ -27,6 +33,7 @@
   // "format_on_save": "off",
   "formatter": "language_server",
   "hard_tabs": false,
+  "hide_mouse": "on_typing",
   "hover_popover_enabled": true,
   "line_indicator_format": "short",
   "preferred_line_length": 9999,
@@ -50,6 +57,7 @@
     "show_type_hints": false
   },
   "edit_predictions": {
+    "disabled_globs": [],
     "mode": "eager",
     "enabled": true
   },
@@ -62,13 +70,13 @@
     100
   ],
   "lsp": {
-    // "ruby-lsp": {
-    //   "initialization_options": {
-    //     "enabledFeatures": {
-    //       "diagnostics": false
-    //     }
-    //   }
-    // },
+    "ruby-lsp": {
+      "initialization_options": {
+        "enabledFeatures": {
+          "diagnostics": false
+        }
+      }
+    },
     "rubocop": {
       "initialization_options": {
         "safeAutocorrect": false
@@ -95,9 +103,9 @@
   "languages": {
     "Ruby": {
       "language_servers": [
-        "!rubocop",
-        "!ruby-lsp",
-        "solargraph",
+        "ruby-lsp",
+        "!solargraph",
+        "rubocop",
         "..."
       ]
     },
