@@ -13,6 +13,7 @@
     "edit_prediction_provider": "copilot"
   },
   "agent": {
+    "play_sound_when_agent_done": true,
     "always_allow_tool_actions": true,
     "version": "2",
     "inline_assistant_model": {
@@ -130,17 +131,17 @@
       //   }
       // }
     },
-    "JavaScript": {
-      "format_on_save": {
-        "external": {
-          "command": "prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
-        }
-      }
-    },
+    // "JavaScript": {
+    //   "format_on_save": {
+    //     "external": {
+    //       "command": "prettier",
+    //       "arguments": [
+    //         "--stdin-filepath",
+    //         "{buffer_path}"
+    //       ]
+    //     }
+    //   }
+    // },
     "TypeScript": {
       "format_on_save": {
         "external": {
