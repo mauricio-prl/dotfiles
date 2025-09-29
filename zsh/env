@@ -24,7 +24,10 @@ export ASDF_DATA_DIR="/Users/mauriciolima/.asdf"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 # Gemini
-export GEMINI_API_KEY="AIzaSyBRLXygT5P914XSApWr4CcK6NpjWotfdzo"
+# export GEMINI_API_KEY="AIzaSyBRLXygT5P914XSApWr4CcK6NpjWotfdzo"
 
 # Overcommit
 export OVERCOMMIT_DISABLE=1
+
+# Docker
+export DOCKER_HOST=unix:///Users/$USER/.orbstack/run/docker.sock
