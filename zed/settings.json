@@ -13,16 +13,22 @@
     // "edit_prediction_provider": "copilot"
   },
   "agent": {
+    "use_modifier_to_send": false,
     "default_profile": "ask",
     "play_sound_when_agent_done": true,
     "always_allow_tool_actions": true,
     "inline_assistant_model": {
-      "provider": "google",
-      "model": "gemini-2.5-flash"
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
     },
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "claude-sonnet-4"
+    }
+  },
+  "agent_servers": {
+    "gemini": {
+      "ignore_system_version": false
     }
   },
   "autosave": "on_window_change",
