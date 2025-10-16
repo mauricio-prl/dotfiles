@@ -39,6 +39,11 @@
   "format_on_save": "on",
   // "format_on_save": "off",
   "formatter": "language_server",
+  "git": {
+    "blame": {
+      "show_avatar": true
+    }
+  },
   "hard_tabs": false,
   "hide_mouse": "on_typing",
   "hover_popover_enabled": true,
@@ -69,7 +74,8 @@
   "terminal": {
     "copy_on_select": true,
     "default_width": 1000,
-    "dock": "bottom"
+    "dock": "bottom",
+    "font_family": "FiraCode Nerd Font"
   },
   "wrap_guides": [
     100
