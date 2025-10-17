@@ -153,7 +153,7 @@
     //   }
     // },
     "TypeScript": {
-      "format_on_save": {
+      "formatter": {
         "external": {
           "command": "prettier",
           "arguments": [
@@ -161,10 +161,11 @@
             "{buffer_path}"
           ]
         }
-      }
+      },
+      "format_on_save": "on"
     },
     "Markdown": {
-      "format_on_save": {
+      "formatter": {
         "external": {
           "command": "prettier",
           "arguments": [
@@ -172,10 +173,11 @@
             "{buffer_path}"
           ]
         }
-      }
+      },
+      "format_on_save": "on"
     },
     "TSX": {
-      "format_on_save": {
+      "formatter": {
         "external": {
           "command": "prettier",
           "arguments": [
@@ -183,10 +185,11 @@
             "{buffer_path}"
           ]
         }
-      }
+      },
+      "format_on_save": "on"
     },
     "YAML": {
-      "format_on_save": {
+      "formatter": {
         "external": {
           "command": "prettier",
           "arguments": [
@@ -194,10 +197,11 @@
             "{buffer_path}"
           ]
         }
-      }
+      },
+      "format_on_save": "on"
     },
     "CSS": {
-      "format_on_save": {
+      "formatter": {
         "external": {
           "command": "prettier",
           "arguments": [
@@ -205,7 +209,8 @@
             "{buffer_path}"
           ]
         }
-      }
+      },
+      "format_on_save": "on"
     }
   }
 }
