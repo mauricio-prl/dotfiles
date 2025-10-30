@@ -7,6 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "confirm_quit": true,
   "icon_theme": "Catppuccin Macchiato",
   "features": {
     "edit_prediction_provider": "zed"
@@ -19,11 +20,11 @@
     "always_allow_tool_actions": true,
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4"
+      "model": "claude-haiku-4.5"
     },
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4"
+      "model": "claude-haiku-4.5"
     }
   },
   "agent_servers": {
@@ -124,9 +125,9 @@
     },
     "Elixir": {
       "language_servers": [
-        "next-ls",
+        "!next-ls",
         "!lexical",
-        "!elixir-ls",
+        "elixir-ls",
         "..."
       ]
       // "format_on_save": {
