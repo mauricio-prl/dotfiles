@@ -14,23 +14,18 @@
     // "edit_prediction_provider": "copilot"
   },
   "agent": {
-    "use_modifier_to_send": false,
-    "default_profile": "ask",
-    "play_sound_when_agent_done": true,
-    "always_allow_tool_actions": true,
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-haiku-4.5"
+    },
     "inline_assistant_model": {
       "provider": "copilot_chat",
       "model": "claude-haiku-4.5"
     },
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-haiku-4.5"
-    }
-  },
-  "agent_servers": {
-    "gemini": {
-      "ignore_system_version": false
-    }
+    "default_profile": "ask",
+    "model_parameters": [],
+    "play_sound_when_agent_done": true,
+    "always_allow_tool_actions": true
   },
   "autosave": "on_window_change",
   "base_keymap": "VSCode",
@@ -50,7 +45,7 @@
   "hover_popover_enabled": true,
   "line_indicator_format": "short",
   "preferred_line_length": 9999,
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "remove_trailing_whitespace_on_save": true,
   "show_whitespaces": "all",
   "soft_wrap": "none",
