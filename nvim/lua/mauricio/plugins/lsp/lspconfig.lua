@@ -121,11 +121,11 @@ return { -- LSP Configuration & Plugins
     --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities =
-      vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+        vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
     local lspconfig = require("lspconfig")
 
-    lspconfig.solargraph.setup({
+    lspconfig.ruby_lsp.setup({
       capabilities = capabilities,
     })
 
@@ -207,7 +207,7 @@ return { -- LSP Configuration & Plugins
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for tsserver)
           server.capabilities =
-            vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+              vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
           require("lspconfig")[server_name].setup(server)
         end,
       },
