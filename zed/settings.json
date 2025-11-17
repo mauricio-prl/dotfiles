@@ -125,29 +125,19 @@
         "elixir-ls",
         "..."
       ]
-      // "format_on_save": {
-      //   "external": {
-      //     "command": "mix",
-      //     "arguments": [
-      //       "format",
-      //       "--stdin-filename",
-      //       "{buffer_path}",
-      //       "-"
-      //     ]
-      //   }
-      // }
     },
-    // "JavaScript": {
-    //   "format_on_save": {
-    //     "external": {
-    //       "command": "prettier",
-    //       "arguments": [
-    //         "--stdin-filepath",
-    //         "{buffer_path}"
-    //       ]
-    //     }
-    //   }
-    // },
+    "JavaScript": {
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
+      },
+      "format_on_save": "on"
+    },
     "TypeScript": {
       "formatter": {
         "external": {
@@ -207,6 +197,9 @@
         }
       },
       "format_on_save": "on"
+    },
+    "HTML+ERB": {
+      "format_on_save": "off"
     }
   }
 }
