@@ -12,6 +12,7 @@ alias 'glp'='glol'
 alias 'gdob'='git branch | grep -v develop | grep -v master | grep -v main | grep -v staging | xargs git branch -D; git fetch -p'
 alias 'code'='NODE_OPTIONS="" code'
 alias 'gu'="git shortlog | grep -E '^[^ ]'"
+alias 'gap'='git add -p'
 
 # tmux
 alias 'tx'='tmux'
