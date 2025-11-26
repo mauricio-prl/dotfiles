@@ -76,13 +76,12 @@
   "wrap_guides": [
     100
   ],
+  "sticky_scroll": {
+    "enabled": false
+  },
   "lsp": {
     "ruby-lsp": {
-      "initialization_options": {
-        "enabledFeatures": {
-          "diagnostics": false
-        }
-      }
+      "initialization_options": {}
     },
     "rubocop": {
       "initialization_options": {
@@ -111,7 +110,7 @@
     "Ruby": {
       "language_servers": [
         "ruby-lsp",
-        "rubocop",
+        "!rubocop",
         "!solargraph",
         "!sorbet",
         "!steep",
