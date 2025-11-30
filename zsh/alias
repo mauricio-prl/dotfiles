@@ -24,6 +24,7 @@ alias 'brewup'='brew update && brew upgrade && brew cleanup'
 alias 'cpzsh'='cp ~/.zshrc ~/.config/zsh/dotzshrc'
 alias 'resetnvimplugins'='rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim'
 alias 'touchzshrc'='cp ~/.config/zsh/dotzshrc ~/.zshrc'
+alias 'src'='source ~/.zshrc'
 
 # eza
 alias 'ls'='eza -G'

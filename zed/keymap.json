@@ -21,7 +21,7 @@
       "ctrl-j": "terminal_panel::ToggleFocus",
       "ctrl-k": null,
       "ctrl-shift-c": "editor::ToggleComments",
-      "ctrl-y": "editor::AcceptPartialCopilotSuggestion",
+      "ctrl-y": "editor::AcceptPartialEditPrediction",
       "f9": "editor::SortLinesCaseSensitive",
       "pagedown": "editor::MovePageDown",
       "pageup": "editor::MovePageUp"
@@ -66,7 +66,7 @@
       "g r": "editor::FindAllReferences",
       "shift-alt-j": "editor::DuplicateLineDown",
       "shift-h": "editor::MoveToBeginningOfLine",
-      "shift-l": "editor::MoveToEndOfLine"
+      "shift-l": "editor::MoveToEndOfLine",
     }
   },
   {
