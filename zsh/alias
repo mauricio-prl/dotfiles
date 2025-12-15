@@ -9,7 +9,7 @@ alias 'solargraph-setup'='gem install solargraph && yard gems && yard config --g
 
 # git
 alias 'glp'='glol'
-alias 'gdob'='git branch | grep -v develop | grep -v master | grep -v main | grep -v staging | xargs git branch -D; git fetch -p'
+alias 'gdob'='git branch | grep -v master | grep -v main | xargs git branch -D; git fetch -p'
 alias 'code'='NODE_OPTIONS="" code'
 alias 'gu'="git shortlog | grep -E '^[^ ]'"
 alias 'gap'='git add -p'
@@ -25,6 +25,7 @@ alias 'cpzsh'='cp ~/.zshrc ~/.config/zsh/dotzshrc'
 alias 'resetnvimplugins'='rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim'
 alias 'touchzshrc'='cp ~/.config/zsh/dotzshrc ~/.zshrc'
 alias 'src'='source ~/.zshrc'
+alias 'cleaner'='npx mac-cleaner-cli'
 
 # eza
 alias 'ls'='eza -G'
