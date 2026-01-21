@@ -21,7 +21,7 @@
       "ctrl-j": "terminal_panel::ToggleFocus",
       "ctrl-k": null,
       "ctrl-shift-c": "editor::ToggleComments",
-      "ctrl-y": "editor::AcceptPartialEditPrediction",
+      "ctrl-y": "editor::AcceptNextWordEditPrediction",
       "f9": "editor::SortLinesCaseSensitive",
       "pagedown": "editor::MovePageDown",
       "pageup": "editor::MovePageUp"
