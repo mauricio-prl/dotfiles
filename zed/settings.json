@@ -15,6 +15,7 @@
       "default": "confirm"
     },
     "default_model": {
+      "enable_thinking": true,
       "provider": "copilot_chat",
       "model": "claude-haiku-4.5"
     },

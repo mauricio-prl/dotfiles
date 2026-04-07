@@ -15,6 +15,7 @@ alias 'gdob'='git branch | grep -v master | grep -v main | xargs git branch -D; 
 alias 'code'='NODE_OPTIONS="" code'
 alias 'gu'="git shortlog | grep -E '^[^ ]'"
 alias 'gap'='git add -p'
+alias 'gac'='git ai-commit'
 
 # tmux
 alias 'tx'='tmux'
