@@ -1,0 +1,565 @@
+// copy or move this script to /usr/local/bin/git-ai-commit and make it executable to use it as a command line tool.
+
+#!/usr/bin/env node
+
+const { execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
+const readline = require('readline');
+
+// Constants
+const OLLAMA_MODEL = 'qwen3-coder';
+
+// Helper to check if command exists
+function commandExists(cmd) {
+  try {
+    execSync(`command -v ${cmd}`, { shell: true, stdio: 'ignore' });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// Helper to execute shell command and return output
+function exec(cmd, options = {}) {
+  try {
+    return execSync(cmd, { encoding: 'utf8', stdio: 'pipe', ...options }).trim();
+  } catch (error) {
+    if (options.ignoreError) {
+      return '';
+    }
+    throw error;
+  }
+}
+
+// Parse command line arguments
+function parseArgs() {
+  const flags = {};
+  const args = process.argv.slice(2);
+
+  args.forEach(arg => {
+    switch (arg) {
+      case '-h':
+      case '--help':
+        flags.help = true;
+        break;
+      case '-c':
+      case '--context':
+        flags.context = true;
+        break;
+      case '-s':
+      case '--summary-only':
+        flags.summaryOnly = true;
+        break;
+      case '--no-gpg-sign':
+        flags.noGpgSign = true;
+        break;
+      case '--no-verify':
+        flags.noVerify = true;
+        break;
+      case '-C':
+      case '--conventional-commit':
+        flags.conventionalCommit = true;
+        break;
+      case '-a':
+      case '--add-all':
+        flags.addAll = true;
+        break;
+      case '-p':
+      case '--push':
+        flags.push = true;
+        break;
+    }
+  });
+
+  return flags;
+}
+
+// Show help message
+function showHelp() {
+   console.log(`gc-ai - AI-powered git commit message generator
+
+ Usage: git-ai-commit [OPTIONS]
+
+ Options:
+   -h, --help                 Show this help message
+   -c, --context              Prompt for additional context about the change
+   -s, --summary-only         Only include summary line, skip detailed description
+   --no-gpg-sign              Skip GPG signing of the commit
+   --no-verify                Skip pre-commit and commit-msg hooks
+   -C, --conventional-commit  Use conventional commit format
+   -a, --add-all              Run 'git add -A' before generating commit
+   -p, --push                 Auto-accept commit and push immediately`);
+  process.exit(0);
+}
+
+// Check required dependencies
+function checkDependencies() {
+   const deps = ['bat', 'ollama'];
+   const missing = [];
+
+   for (const dep of deps) {
+     if (!commandExists(dep)) {
+       missing.push(dep);
+     }
+   }
+
+   if (missing.length > 0) {
+     missing.forEach(dep => {
+       switch (dep) {
+         case 'bat':
+           console.error('Error: bat is not installed. Install it from https://github.com/sharkdp/bat');
+           break;
+         case 'ollama':
+           console.error('Error: ollama is not installed. Install it from https://ollama.ai/');
+           break;
+       }
+     });
+     process.exit(1);
+   }
+}
+
+// Create temporary file
+function mktemp() {
+  const tempDir = os.tmpdir();
+  const tempFile = path.join(tempDir, `gc-ai-${Date.now()}-${Math.random().toString(36).substring(7)}.txt`);
+  return tempFile;
+}
+
+// Prompt for text input using Node.js
+function promptWrite(placeholder) {
+   return new Promise((resolve) => {
+     const rl = readline.createInterface({
+       input: process.stdin,
+       output: process.stdout
+     });
+
+     console.log(`${placeholder}\n(Enter text, press Enter twice when done)\n`);
+
+     let input = '';
+     let emptyLineCount = 0;
+
+     rl.on('line', (line) => {
+       if (line === '' && input !== '') {
+         emptyLineCount++;
+         if (emptyLineCount >= 1) {
+           rl.close();
+           return;
+         }
+       } else {
+         emptyLineCount = 0;
+       }
+
+       if (input) input += '\n';
+       input += line;
+     });
+
+     rl.on('close', () => {
+       resolve(input.trim());
+     });
+   });
+}
+
+// Choose option using Node.js
+function promptChoose(options) {
+   return new Promise((resolve) => {
+     const rl = readline.createInterface({
+       input: process.stdin,
+       output: process.stdout
+     });
+
+     console.log('\nSelect an option:');
+     options.forEach((option, index) => {
+       console.log(`${index + 1}. ${option}`);
+     });
+
+     rl.question('\nEnter your choice (number): ', (answer) => {
+       rl.close();
+       const choice = parseInt(answer) - 1;
+       resolve(choice >= 0 && choice < options.length ? options[choice] : 'Cancel');
+     });
+   });
+}
+
+// Read file
+function readFile(filePath) {
+  try {
+    return fs.readFileSync(filePath, 'utf8');
+  } catch {
+    return '';
+  }
+}
+
+// Write file
+function writeFile(filePath, content) {
+  fs.writeFileSync(filePath, content, 'utf8');
+}
+
+// Remove file
+function removeFile(filePath) {
+  try {
+    fs.unlinkSync(filePath);
+  } catch {
+    // File might not exist
+  }
+}
+
+// Build the base prompt
+function buildPrompt(flags, commitHistory, context) {
+  let basePrompt = `Write a git commit message for these changes. Format it as:
+- First line: a summary of 72 characters or less
+- Second line: blank
+- Remaining lines: detailed description (1-3 sentences, only if needed to explain WHY)
+Tone: Direct, technical, and conversational. Write like an experienced developer talking to another developer. No marketing speak, no clever endings, no unnecessary flourishes.
+Focus on WHAT changed and WHY it matters. Skip the obvious. Be precise.
+Every word should earn its place. When in doubt, be brief.
+
+CRITICAL REQUIREMENTS:
+- Do NOT include any quotes (single or double) in the commit message
+- Do NOT include PR references (like #1234, #6403, etc.)
+- Do NOT include URLs or links
+- Do NOT include ticket numbers or issue references
+- Return ONLY the commit message, nothing else`;
+
+  if (flags.conventionalCommit) {
+    basePrompt = `Write a git commit message following the Conventional Commits specification.
+CONVENTIONAL COMMITS SPECIFICATION:
+1. Commits MUST be prefixed with a type (noun like feat, fix, etc.), followed by OPTIONAL scope, OPTIONAL !, and REQUIRED terminal colon and space.
+2. The type feat MUST be used when a commit adds a new feature.
+3. The type fix MUST be used when a commit represents a bug fix.
+4. A scope MAY be provided after a type. A scope MUST consist of a noun describing a section of the codebase surrounded by parenthesis, e.g., fix(parser):
+5. A description MUST immediately follow the colon and space after the type/scope prefix. The description is a short summary of the code changes.
+6. A longer commit body MAY be provided after the short description, providing additional contextual information about the code changes. The body MUST begin one blank line after the description.
+7. Breaking changes MUST be indicated by a ! immediately before the : in the type/scope prefix, OR as a footer entry.
+8. If included as a footer, a breaking change MUST consist of the uppercase text BREAKING CHANGE, followed by colon, space, and description.
+9. Types other than feat and fix MAY be used (e.g., docs, style, refactor, perf, test, build, ci, chore, revert).
+FORMAT:
+<type>[optional scope][optional !]: <description>
+[optional body]
+[optional footer(s)]
+EXAMPLES:
+feat(auth): add oauth2 integration
+fix!: correct major calculation error
+docs(api): update endpoint documentation
+BREAKING CHANGE: API endpoints now require authentication
+STYLE REQUIREMENTS:
+- Description: Keep under 50 chars, present tense, no capital first letter, no period
+- Body: 1-3 sentences MAX, only if needed to explain WHY. Often unnecessary.
+- Tone: Direct, technical, conversational. No marketing speak, no clever endings.
+Focus on WHAT changed and WHY it matters. When in doubt, be brief.
+
+CRITICAL REQUIREMENTS:
+- Do NOT include any quotes (single or double) in the commit message
+- Do NOT include PR references (like #1234, #6403, etc.)
+- Do NOT include URLs or links
+- Do NOT include ticket numbers or issue references
+- Return ONLY the commit message, nothing else`;
+  }
+
+  basePrompt += '\n\nReturn only the commit message.';
+
+  if (commitHistory) {
+    basePrompt += `\n\nRecent commits from this repository for style reference:\n---\n${commitHistory}\n---`;
+  }
+
+  if (context) {
+    basePrompt += `\n\nAdditional context from the developer:\n${context}`;
+  }
+
+  return basePrompt;
+}
+
+// Generate message using ollama
+function generateMessage(diff, prompt) {
+   const outputFile = mktemp();
+   const escapedPrompt = prompt.replace(/'/g, "'\\''");
+   const escapedDiff = diff.replace(/'/g, "'\\''");
+
+   try {
+     const fullPrompt = `${escapedPrompt}\n\n${escapedDiff}`;
+     const cmd = `printf '${fullPrompt}' | ollama run ${OLLAMA_MODEL}`;
+     const result = exec(cmd, { ignoreError: false });
+     writeFile(outputFile, result);
+     return outputFile;
+   } catch (error) {
+     console.error('Error generating message with ollama:', error.message);
+     process.exit(1);
+   }
+}
+
+// Validate message format
+function validateMessage(filePath, flags) {
+  const content = readFile(filePath);
+  const lines = content.split('\n');
+  const summary = lines[0];
+
+  if (flags.conventionalCommit) {
+    const regex = /^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([^)]+\))?!?: .+$/;
+    if (!regex.test(summary)) {
+      console.log('Not a valid conventional commit format, regenerating...');
+      return false;
+    }
+    const descriptionPart = summary.replace(/^[^:]+: /, '');
+    if (descriptionPart.length > 50) {
+      console.log(`Conventional commit description too long (${descriptionPart.length} chars), regenerating...`);
+      return false;
+    }
+  } else {
+    if (summary.length > 72) {
+      console.log(`Summary too long (${summary.length} chars), regenerating...`);
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// Clean blank lines and remove markdown fences
+function cleanBlankLines(filePath) {
+  const content = readFile(filePath);
+  const output = mktemp();
+
+  // Remove markdown fences
+  let cleaned = content.split('\n').filter(line => line !== '```').join('\n');
+
+  // Remove leading blank lines and trim each side
+  cleaned = cleaned.replace(/^\n+/, '').trimEnd();
+
+  // Reduce multiple blank lines to single blank line
+  cleaned = cleaned.replace(/\n\n\n+/g, '\n\n');
+
+  writeFile(output, cleaned);
+  return output;
+}
+
+// Add disclaimer to message
+function addDisclaimer(filePath, flags) {
+  const content = readFile(filePath);
+  const lines = content.split('\n');
+  const summary = lines[0];
+  const output = mktemp();
+
+  let result = `${summary}\n`;
+
+  if (!flags.summaryOnly) {
+    const body = lines.slice(1).join('\n').trim();
+    if (body) {
+      result += `\n${body}\n`;
+    }
+  }
+
+  writeFile(output, result);
+  return output;
+}
+
+// Display message using bat (fallback to cat if unavailable)
+function displayMessage(filePath) {
+  try {
+    execSync(`bat -P -H 1 --style=changes,grid,numbers,snip "${filePath}"`, { stdio: 'inherit' });
+  } catch {
+    // Fallback to cat if bat fails
+    console.log(readFile(filePath));
+  }
+}
+
+// Perform commit
+function performCommit(filePath, gitOptions) {
+  try {
+    const optionsStr = gitOptions.length > 0 ? ' ' + gitOptions.join(' ') : '';
+    execSync(`git commit -F "${filePath}"${optionsStr}`, { stdio: 'inherit' });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// Main function
+async function main() {
+   const flags = parseArgs();
+
+   if (flags.help) {
+     showHelp();
+   }
+
+   checkDependencies();
+
+   // Add all changes if -a flag is provided
+   if (flags.addAll) {
+     console.log('Adding all changes...');
+     try {
+       execSync('git add -A', { stdio: 'inherit' });
+     } catch (error) {
+       console.error('Error adding changes:', error.message);
+       process.exit(1);
+     }
+   }
+
+   // Get the git diff
+   const diff = exec('git diff --cached', { ignoreError: true });
+   if (!diff) {
+     console.error('No staged changes to commit');
+     process.exit(1);
+   }
+
+   // Get the last 5 commits for style reference
+   const commitHistory = exec('git log --pretty=format:"%s%n%n%b" -5', { ignoreError: true });
+
+   // Collect context
+   let context = '';
+   if (flags.context) {
+     context = await promptWrite('What motivated this change? Is there context a future reader will need to know? What problem did you solve?');
+   }
+
+   // Build git commit options
+   const gitCommitOptions = [];
+   if (flags.noGpgSign) {
+     gitCommitOptions.push('--no-gpg-sign');
+   }
+   if (flags.noVerify) {
+     gitCommitOptions.push('--no-verify');
+   }
+
+    // Build the prompt
+    const prompt = buildPrompt(flags, commitHistory, context);
+
+    // Main loop
+    await mainLoop();
+
+   async function mainLoop() {
+     const messageFile = generateMessage(diff, prompt);
+
+      // Validate message
+      if (!validateMessage(messageFile, flags)) {
+        removeFile(messageFile);
+        console.log('Generating new message...');
+        await mainLoop();
+        return;
+      }
+
+     // Clean and prepare display file
+     const cleanedFile = cleanBlankLines(messageFile);
+     removeFile(messageFile);
+     const displayFile = addDisclaimer(cleanedFile, flags);
+     removeFile(cleanedFile);
+
+     // Handle auto-push
+     if (flags.push) {
+       console.log('Generated commit message:');
+       displayMessage(displayFile);
+       console.log('Auto-committing and pushing...');
+
+       if (performCommit(displayFile, gitCommitOptions)) {
+         try {
+           execSync('git push', { stdio: 'inherit' });
+         } catch (error) {
+           console.error('Error pushing:', error.message);
+         }
+         removeFile(displayFile);
+         process.exit(0);
+       } else {
+         removeFile(displayFile);
+         process.exit(1);
+       }
+     }
+
+     // Show message and get user action
+     console.log('Generated commit message:');
+     displayMessage(displayFile);
+
+     const action = await promptChoose(['Commit', 'Commit and Push', 'Edit', 'Reroll', 'Condense', 'Cancel']);
+
+     switch (action) {
+       case 'Commit':
+         if (performCommit(displayFile, gitCommitOptions)) {
+           removeFile(displayFile);
+           process.exit(0);
+         } else {
+           removeFile(displayFile);
+           process.exit(1);
+         }
+         break;
+
+       case 'Commit and Push':
+         if (performCommit(displayFile, gitCommitOptions)) {
+           try {
+             execSync('git push', { stdio: 'inherit' });
+           } catch (error) {
+             console.error('Error pushing:', error.message);
+           }
+           removeFile(displayFile);
+           process.exit(0);
+         } else {
+           removeFile(displayFile);
+           process.exit(1);
+         }
+         break;
+
+       case 'Edit':
+         const editor = process.env.EDITOR || 'nvim';
+         try {
+           execSync(`${editor} "${displayFile}"`, { stdio: 'inherit' });
+           execSync(`git commit -F "${displayFile}" ${gitCommitOptions.join(' ')}`, { stdio: 'inherit' });
+         } catch (error) {
+           console.error('Error editing or committing:', error.message);
+         }
+         removeFile(displayFile);
+         process.exit(0);
+         break;
+
+        case 'Reroll':
+          console.log('Generating new message...');
+          removeFile(displayFile);
+          await mainLoop();
+          break;
+
+       case 'Condense':
+         console.log('Condensing message...');
+         const currentMessage = readFile(displayFile);
+         const condensePrompt = `Take this commit message and make it more concise while retaining the what and the why:\n\n${currentMessage}`;
+         try {
+           const condensedFile = generateMessage(diff, condensePrompt);
+           const cleanedCondensed = cleanBlankLines(condensedFile);
+           const disclaimedCondensed = addDisclaimer(cleanedCondensed, flags);
+           removeFile(condensedFile);
+           removeFile(cleanedCondensed);
+           removeFile(displayFile);
+
+           console.log('Condensed commit message:');
+           displayMessage(disclaimedCondensed);
+
+            const condenseAction = await promptChoose(['Use This', 'Reroll', 'Cancel']);
+            if (condenseAction === 'Use This') {
+              if (performCommit(disclaimedCondensed, gitCommitOptions)) {
+                removeFile(disclaimedCondensed);
+                process.exit(0);
+              }
+            } else if (condenseAction === 'Reroll') {
+              removeFile(disclaimedCondensed);
+              console.log('Generating new message...');
+              await mainLoop();
+            } else {
+              removeFile(disclaimedCondensed);
+              process.exit(0);
+            }
+         } catch (error) {
+           console.error('Error condensing message:', error.message);
+           removeFile(displayFile);
+           process.exit(1);
+         }
+         break;
+
+       case 'Cancel':
+       default:
+         console.log('Commit cancelled');
+         removeFile(displayFile);
+         process.exit(0);
+         break;
+     }
+   }
+}
+
+main().catch(error => {
+   console.error('Unexpected error:', error.message);
+   process.exit(1);
+});
