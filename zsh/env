@@ -31,3 +31,6 @@ export OVERCOMMIT_DISABLE=1
 
 # Docker
 export DOCKER_HOST=unix:///Users/$USER/.orbstack/run/docker.sock
+
+# Claude code
+export PATH="$HOME/.local/bin:$PATH"
