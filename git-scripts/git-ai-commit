@@ -313,13 +313,16 @@ function validateMessage(filePath, flags) {
   return true;
 }
 
-// Clean blank lines and remove markdown fences
+// Clean blank lines and remove markdown fences and terminal escape sequences
 function cleanBlankLines(filePath) {
   const content = readFile(filePath);
   const output = mktemp();
 
   // Remove markdown fences
   let cleaned = content.split('\n').filter(line => line !== '```').join('\n');
+
+  // Remove terminal escape sequences (like [K, [4D, etc.)
+  cleaned = cleaned.replace(/\x1b\[[0-9;]*[a-zA-Z]/g, '');
 
   // Remove leading blank lines and trim each side
   cleaned = cleaned.replace(/^\n+/, '').trimEnd();
