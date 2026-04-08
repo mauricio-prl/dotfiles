@@ -1,5 +1,3 @@
-// copy or move this script to /usr/local/bin/git-ai-commit and make it executable to use it as a command line tool.
-
 #!/usr/bin/env node
 
 const { execSync } = require('child_process');
