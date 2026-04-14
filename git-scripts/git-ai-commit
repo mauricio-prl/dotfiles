@@ -321,13 +321,21 @@ function cleanBlankLines(filePath) {
   // Remove markdown fences
   let cleaned = content.split('\n').filter(line => line !== '```').join('\n');
 
-  // Remove terminal escape sequences (like [K, [4D, etc.)
-  cleaned = cleaned.replace(/\x1b\[[0-9;]*[a-zA-Z]/g, '');
+  // Remove ALL terminal escape sequences and control characters more aggressively
+  // This includes color codes, cursor movement, and other ANSI sequences
+  cleaned = cleaned.replace(/\x1b\[[0-9;]*[a-zA-Z]/g, '');      // Standard ANSI sequences
+  cleaned = cleaned.replace(/\x1b\[[0-9;]*m/g, '');              // Color codes
+  cleaned = cleaned.replace(/\x1b\[K/g, '');                     // Clear line
+  cleaned = cleaned.replace(/\x1b\[[0-9]+[ABCD]/g, '');          // Cursor movement
+  cleaned = cleaned.replace(/\u001b\[[^\u001b]*?[a-zA-Z]/g, ''); // Any remaining escape
+
+  // Remove any remaining control characters (but keep newlines and tabs)
+  cleaned = cleaned.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
 
   // Remove leading blank lines and trim each side
   cleaned = cleaned.replace(/^\n+/, '').trimEnd();
 
-  // Reduce multiple blank lines to single blank line
+  // Reduce multiple blank lines to single blank line (preserve intentional single blank lines)
   cleaned = cleaned.replace(/\n\n\n+/g, '\n\n');
 
   writeFile(output, cleaned);
