@@ -269,14 +269,14 @@ CRITICAL REQUIREMENTS:
 }
 
 // Generate message using ollama
-function generateMessage(diff, prompt) {
    const outputFile = mktemp();
+function generateMessage(diff, prompt) {
    const escapedPrompt = prompt.replace(/'/g, "'\\''");
    const escapedDiff = diff.replace(/'/g, "'\\''");
 
    try {
      const fullPrompt = `${escapedPrompt}\n\n${escapedDiff}`;
-     const cmd = `printf '${fullPrompt}' | ollama run ${OLLAMA_MODEL}`;
+     const cmd = `printf '${fullPrompt}' | ollama run ${OLLAMA_MODEL} | tr -cd '[:print:]\\n'`;
      const result = exec(cmd, { ignoreError: false });
      writeFile(outputFile, result);
      return outputFile;
@@ -505,7 +505,7 @@ async function main() {
          break;
 
        case 'Edit':
-         const editor = process.env.EDITOR || 'nvim';
+         const editor = 'nvim';
          try {
            execSync(`${editor} "${displayFile}"`, { stdio: 'inherit' });
            execSync(`git commit -F "${displayFile}" ${gitCommitOptions.join(' ')}`, { stdio: 'inherit' });
