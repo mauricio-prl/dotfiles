@@ -271,14 +271,20 @@ CRITICAL REQUIREMENTS:
 // Generate message using ollama
 function generateMessage(diff, prompt) {
    const outputFile = mktemp();
-   const escapedPrompt = prompt.replace(/'/g, "'\\''");
-   const escapedDiff = diff.replace(/'/g, "'\\''");
 
    try {
-     const fullPrompt = `${escapedPrompt}\n\n${escapedDiff}`;
-     const cmd = `printf '${fullPrompt}' | ollama run ${OLLAMA_MODEL} | sed $'s/\\033\\[[0-9;]*[mGKHJABCDEFSTf]//g' | col -b`;
+     const fullPrompt = `${prompt}\n\n${diff}`;
+     const jsonPayload = JSON.stringify({
+       model: OLLAMA_MODEL,
+       prompt: fullPrompt,
+       stream: false
+     });
+
+     const cmd = `curl -s -X POST http://localhost:11434/api/generate -H "Content-Type: application/json" -d '${jsonPayload.replace(/'/g, "'\\''")}'`;
      const result = exec(cmd, { ignoreError: false });
-     writeFile(outputFile, result);
+
+     const jsonResponse = JSON.parse(result);
+     writeFile(outputFile, jsonResponse.response);
      return outputFile;
    } catch (error) {
      console.error('Error generating message with ollama:', error.message);
@@ -342,6 +348,61 @@ function cleanBlankLines(filePath) {
   return output;
 }
 
+// Wrap text to a maximum line length
+function wrapText(text, maxLength = 72) {
+  const lines = text.split('\n');
+  const wrappedLines = [];
+
+  for (const line of lines) {
+    // If line is already short enough or is empty, keep it as is
+    if (line.length <= maxLength || line.trim() === '') {
+      wrappedLines.push(line);
+      continue;
+    }
+
+    // Wrap long lines
+    const words = line.split(' ');
+    let currentLine = '';
+
+    for (const word of words) {
+      const testLine = currentLine ? `${currentLine} ${word}` : word;
+
+      if (testLine.length <= maxLength) {
+        currentLine = testLine;
+      } else {
+        if (currentLine) {
+          wrappedLines.push(currentLine);
+        }
+        currentLine = word;
+      }
+    }
+
+    if (currentLine) {
+      wrappedLines.push(currentLine);
+    }
+  }
+
+  return wrappedLines.join('\n');
+}
+
+// Clean blank lines and remove markdown fences and terminal escape sequences
+function cleanBlankLines(filePath) {
+  const content = readFile(filePath);
+  const output = mktemp();
+
+  // Remove markdown fences
+  let cleaned = content.split('\n').filter(line => line !== '```').join('\n');
+
+  // Remove leading blank lines and trim each side
+  cleaned = cleaned.replace(/^\n+/, '').trimEnd();
+
+  // Reduce multiple blank lines to single blank line
+  cleaned = cleaned.replace(/\n\n\n+/g, '\n\n');
+
+  writeFile(output, cleaned);
+  return output;
+}
+
 // Add disclaimer to message
 function addDisclaimer(filePath, flags) {
   const content = readFile(filePath);
@@ -354,7 +415,8 @@ function addDisclaimer(filePath, flags) {
   if (!flags.summaryOnly) {
     const body = lines.slice(1).join('\n').trim();
     if (body) {
-      result += `\n${body}\n`;
+      const wrappedBody = wrapText(body, 72);
+      result += `\n${wrappedBody}\n`;
     }
   }
 
