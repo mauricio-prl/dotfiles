@@ -276,7 +276,7 @@ function generateMessage(diff, prompt) {
 
    try {
      const fullPrompt = `${escapedPrompt}\n\n${escapedDiff}`;
-     const cmd = `printf '${fullPrompt}' | ollama run ${OLLAMA_MODEL} | sed 's/\\x1b\\[[0-9;]*[mKHJABCDEFG]//g' | tr -cd '[:print:]\\n'`;
+     const cmd = `printf '${fullPrompt}' | ollama run ${OLLAMA_MODEL} | sed $'s/\\033\\[[0-9;]*[mGKHJABCDEFSTf]//g' | col -b`;
      const result = exec(cmd, { ignoreError: false });
      writeFile(outputFile, result);
      return outputFile;
