@@ -269,14 +269,14 @@ CRITICAL REQUIREMENTS:
 }
 
 // Generate message using ollama
-   const outputFile = mktemp();
 function generateMessage(diff, prompt) {
+   const outputFile = mktemp();
    const escapedPrompt = prompt.replace(/'/g, "'\\''");
    const escapedDiff = diff.replace(/'/g, "'\\''");
 
    try {
      const fullPrompt = `${escapedPrompt}\n\n${escapedDiff}`;
-     const cmd = `printf '${fullPrompt}' | ollama run ${OLLAMA_MODEL} | tr -cd '[:print:]\\n'`;
+     const cmd = `printf '${fullPrompt}' | ollama run ${OLLAMA_MODEL} | sed 's/\\x1b\\[[0-9;]*[mKHJABCDEFG]//g' | tr -cd '[:print:]\\n'`;
      const result = exec(cmd, { ignoreError: false });
      writeFile(outputFile, result);
      return outputFile;
