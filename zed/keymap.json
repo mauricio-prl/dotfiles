@@ -2,7 +2,9 @@
   {
     "context": "Workspace",
     "bindings": {
-      "alt-1": "terminal_panel::ToggleFocus"
+      "alt-1": "terminal_panel::ToggleFocus",
+      "cmd-b": "workspace::ToggleLeftDock",
+      "cmd-r": "workspace::ToggleRightDock"
     }
   },
   {
