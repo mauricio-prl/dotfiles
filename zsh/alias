@@ -39,3 +39,6 @@ alias 'lsa'='eza -a -1 -l -x'
 alias 'dc'='docker-compose'
 alias 'dcu'='dc up -d'
 alias 'dcd'='dc down'
+
+# misc
+alias 'pdftotext-22'='/usr/local/bin/pdftotext-22'
