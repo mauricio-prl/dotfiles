@@ -57,11 +57,11 @@
     "dock": "right"
   },
   "project_panel": {
-    "git_status": false,
+    // "git_status": false,
     "dock": "left"
   },
   "scrollbar": {
-    "git_diff": false
+    // "git_diff": false
   },
   "tabs": {
     "git_status": false

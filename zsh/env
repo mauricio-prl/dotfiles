@@ -27,7 +27,7 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 # export GEMINI_API_KEY="AIzaSyBRLXygT5P914XSApWr4CcK6NpjWotfdzo"
 
 # Overcommit
-export OVERCOMMIT_DISABLE=1
+export OVERCOMMIT_DISABLE=0
 
 # Docker
 export DOCKER_HOST=unix:///Users/$USER/.orbstack/run/docker.sock
