@@ -212,6 +212,7 @@ function buildPrompt(flags, commitHistory, context) {
 Tone: Direct, technical, and conversational. Write like an experienced developer talking to another developer. No marketing speak, no clever endings, no unnecessary flourishes.
 Focus on WHAT changed and WHY it matters. Skip the obvious. Be precise.
 Every word should earn its place. When in doubt, be brief.
+For these lines(third and beyond), we can use the line length as 120.
 
 CRITICAL REQUIREMENTS:
 - Do NOT include any quotes (single or double) in the commit message
