@@ -22,6 +22,7 @@
       "ctrl-h": "project_panel::ToggleFocus",
       "ctrl-j": "terminal_panel::ToggleFocus",
       "ctrl-k": null,
+      "ctrl-l": "agent::ToggleFocus",
       "ctrl-shift-c": "editor::ToggleComments",
       "ctrl-y": "editor::AcceptNextWordEditPrediction",
       "f9": "editor::SortLinesCaseSensitive",
@@ -68,7 +69,7 @@
       "g r": "editor::FindAllReferences",
       "shift-alt-j": "editor::DuplicateLineDown",
       "shift-h": "editor::MoveToBeginningOfLine",
-      "shift-l": "editor::MoveToEndOfLine",
+      "shift-l": "editor::MoveToEndOfLine"
     }
   },
   {
@@ -94,6 +95,12 @@
       "enter": "project_panel::OpenPermanent",
       "shift-enter": "project_panel::Open",
       "space": "project_panel::Rename"
+    }
+  },
+  {
+    "context": "AcpThread",
+    "bindings": {
+      "ctrl-h": "agent::ToggleFocus"
     }
   }
 ]

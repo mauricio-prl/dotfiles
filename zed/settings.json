@@ -19,11 +19,13 @@
   "confirm_quit": true,
   "icon_theme": "Catppuccin Macchiato",
   "agent": {
+    "favorite_models": [],
     "dock": "right",
     "tool_permissions": {
       "default": "confirm"
     },
     "default_model": {
+      "effort": "low",
       "enable_thinking": true,
       "provider": "copilot_chat",
       "model": "claude-haiku-4.5"
@@ -32,9 +34,9 @@
       "provider": "copilot_chat",
       "model": "claude-haiku-4.5"
     },
-    "default_profile": "ask",
+    "default_profile": "write",
     "model_parameters": [],
-    "play_sound_when_agent_done": "always"
+    "play_sound_when_agent_done": "when_hidden"
   },
   "autosave": "on_focus_change",
   "base_keymap": "VSCode",
@@ -49,9 +51,9 @@
       "show_avatar": true
     },
     "git_gutter": "tracked_files",
-    "inline_blame": {
-      "enabled": false
-    }
+    // "inline_blame": {
+    //   "enabled": false
+    // }
   },
   "outline_panel": {
     "git_status": false,
