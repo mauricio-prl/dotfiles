@@ -8,6 +8,7 @@ alias 'rcu'='ggl && DISABLE_SPRING=1 bundle install && bx rails db:migrate && bx
 alias 'bd'='bin/dev'
 alias 'solargraph-setup'='gem install solargraph && yard gems && yard config --gem-install-yri'
 alias 'rr'='kport 3000 ; spring stop'
+alias 'cop'='bx rubocop'
 
 # git
 alias 'glp'='glol'

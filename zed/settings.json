@@ -28,7 +28,7 @@
       "effort": "low",
       "enable_thinking": true,
       "provider": "copilot_chat",
-      "model": "claude-haiku-4.5"
+      "model": "gpt-5.3-codex"
     },
     "inline_assistant_model": {
       "provider": "copilot_chat",
@@ -36,7 +36,11 @@
     },
     "default_profile": "write",
     "model_parameters": [],
-    "play_sound_when_agent_done": "when_hidden"
+    "play_sound_when_agent_done": "when_hidden",
+    "sandbox_permissions": {
+      "allow_all_hosts": true
+      // "allow_unsandboxed": true
+    }
   },
   "autosave": "on_focus_change",
   "base_keymap": "VSCode",
