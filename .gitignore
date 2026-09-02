@@ -3,6 +3,7 @@
 !.gitignore
 
 !/zed/themes
+!/zed/agents
 !/zed/settings.json
 !/zed/keymap.json
 !/zed/tasks.json
