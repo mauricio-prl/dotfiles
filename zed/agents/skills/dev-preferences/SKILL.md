@@ -137,7 +137,7 @@ A step may modify multiple files when those changes form a coherent unit.
 For example, these may belong to the same step:
 
 - A model change
-- Its corresponding spec
+- Its corresponding spec (check if there is a spec/test skill and use it)
 - A small supporting domain object
 
 Do not artificially split a logical change into individual file operations.
@@ -319,6 +319,8 @@ Tests should describe behavior rather than implementation details whenever pract
 Keep tests readable and focused.
 
 Do not create excessive test abstractions merely to reduce a small amount of duplication.
+
+Check for possible spec/test skill present on the environment and use it as well.
 
 ---
 
