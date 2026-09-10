@@ -126,7 +126,13 @@
         "path": "/Users/mauriciolima/.asdf/shims/ruby-lsp",
         "arguments": []
       },
-      "initialization_options": {}
+      "initialization_options": {
+        "addonSettings": {
+          "Ruby LSP Rails": {
+            "enablePendingMigrationsPrompt": false
+          }
+        }
+      }
     },
     "rubocop": {
       "initialization_options": {
