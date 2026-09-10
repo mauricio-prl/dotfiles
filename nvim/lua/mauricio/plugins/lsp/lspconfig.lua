@@ -123,15 +123,7 @@ return { -- LSP Configuration & Plugins
     capabilities =
         vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-    local lspconfig = require("lspconfig")
 
-    lspconfig.ruby_lsp.setup({
-      capabilities = capabilities,
-    })
-
-    lspconfig.ts_ls.setup({
-      capabilities = capabilities,
-    })
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
     --
@@ -154,6 +146,9 @@ return { -- LSP Configuration & Plugins
       -- But for many setups, the LSP (`tsserver`) will work just fine
       -- tsserver = {},
       --
+
+      ruby_lsp = {},
+      ts_ls = {},
 
       lua_ls = {
         -- cmd = {...},
@@ -208,7 +203,8 @@ return { -- LSP Configuration & Plugins
           -- certain features of an LSP (for example, turning off formatting for tsserver)
           server.capabilities =
               vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-          require("lspconfig")[server_name].setup(server)
+          vim.lsp.config(server_name, server)
+          vim.lsp.enable(server_name)
         end,
       },
     })
