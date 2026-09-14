@@ -17,7 +17,11 @@
   },
   "colorize_brackets": true,
   "confirm_quit": true,
-  "icon_theme": "Catppuccin Macchiato",
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Catppuccin Macchiato",
+    "dark": "Catppuccin Macchiato"
+  },
   "agent": {
     "favorite_models": [],
     "dock": "right",
@@ -90,7 +94,11 @@
   "show_whitespaces": "all",
   "soft_wrap": "none",
   "tab_size": 2,
-  "theme": "Catppuccin Mocha",
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Catppuccin Macchiato"
+  },
   "ui_font_family": "FiraCode Nerd Font",
   "vertical_scroll_margin": 10,
   "vim_mode": true,
@@ -253,5 +261,21 @@
     "HTML+ERB": {
       "format_on_save": "off"
     }
+  },
+  "theme_overrides": {
+    "Catppuccin Macchiato": {
+      "syntax": {
+        "string.special.symbol": {
+          "color": "#fab387"
+        },
+      }
+    },
+    "Catppuccin Mocha": {
+      "syntax": {
+        "string.special.symbol": {
+          "color": "#fab387"
+        },
+      }
+    },
   }
 }
