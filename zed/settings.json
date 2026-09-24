@@ -7,6 +7,9 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "cursor_animation": {
+    "enabled": false
+  },
   "agent_servers": {},
   "cli_default_open_behavior": "new_window",
   "collaboration_panel": {

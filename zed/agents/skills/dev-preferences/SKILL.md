@@ -1,6 +1,6 @@
 ---
 name: dev-preferences
-description: Development workflow and coding preferences that MUST be followed for all software development tasks, including new features, bug fixes, refactors, tests, and code changes. Requires context gathering, clarification of consequential assumptions, a concise step-by-step implementation plan, explicit user approval before making changes, incremental execution in logical batches, verification after each step, adherence to existing project architecture and coding standards, Clean Code, appropriate DDD and SOLID practices, comprehensive RSpec coverage for backend changes when applicable, and final RuboCop/Overcommit validation. Keep communication concise and do not perform Git or dependency operations without explicit approval.
+description: Development workflow and coding preferences that MUST be followed for all software development tasks, including new features, bug fixes, refactors, tests, and code changes. Requires context gathering, clarification of consequential assumptions, a concise step-by-step implementation plan, explicit user approval before making changes, incremental execution in logical batches, verification after each step, adherence to existing project architecture and coding standards, Clean Code, appropriate DDD and SOLID practices, comprehensive RSpec coverage for backend changes when applicable, and final RuboCop validation. Keep communication concise and do not perform Git or dependency operations without explicit approval.
 disable-model-invocation: false
 ---
 
@@ -115,7 +115,7 @@ Plan:
 2. Update the service to publish the event.
 3. Add RSpec coverage for the new behavior and failure case.
 4. Run the relevant specs.
-5. Run Overcommit for final validation.
+5. Run final validation checks.
 ```
 
 Do not provide lengthy explanations for each step unless the user asks.
@@ -359,7 +359,7 @@ When a task changes the database:
 
 Database changes must be tested when they affect application behavior.
 
-The project's existing Overcommit checks should be respected for schema and migration changes.
+The project's existing quality checks should be respected for schema and migration changes.
 
 ---
 
@@ -500,15 +500,9 @@ When development is complete, perform the appropriate validation.
 
 For Ruby/Rails projects, this includes the project's configured quality checks.
 
-Run:
+Run the project's configured quality checks when appropriate.
 
-```bash
-overcommit --run
-```
-
-when appropriate.
-
-Overcommit includes RuboCop and other configured checks.
+This includes RuboCop and other configured checks.
 
 Respect all project-configured rules.
 
@@ -617,7 +611,7 @@ Never:
 - Perform Git operations without approval.
 - Modify previously executed migrations.
 - Ignore failing tests.
-- Ignore RuboCop/Overcommit failures.
+- Ignore RuboCop or other configured quality-check failures.
 - Disable quality checks to make the code pass.
 - Claim a command was run when it was not.
 - Claim tests passed when they were not run.
@@ -638,7 +632,7 @@ A task is complete when:
 - Relevant tests pass.
 - Database changes, if any, are correctly implemented.
 - Relevant production-safety concerns have been addressed.
-- `overcommit --run` has been run when applicable.
+- Relevant configured quality checks have been run when applicable.
 - All required quality checks pass.
 - No unrelated work has been introduced.
 - The user has been informed of the final result.
@@ -664,7 +658,7 @@ Use this loop for every coding task:
 12. Execute the next logical batch.
 13. Repeat until implementation is complete.
 14. Run relevant tests.
-15. Run final quality checks, including overcommit --run when applicable.
+15. Run final quality checks when applicable.
 16. Report completion concisely.
 ```
 
