@@ -7,6 +7,9 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "search": {
+    "search_on_type": false
+  },
   "cursor_animation": {
     "enabled": false
   },
@@ -32,7 +35,7 @@
       "default": "confirm"
     },
     "default_model": {
-      "effort": "low",
+      "effort": "medium",
       "enable_thinking": true,
       "provider": "copilot_chat",
       "model": "gpt-5.3-codex"
@@ -103,7 +106,8 @@
     "dark": "Catppuccin Macchiato"
   },
   "ui_font_family": "FiraCode Nerd Font",
-  "vertical_scroll_margin": 10,
+  "vertical_scroll_margin": 15,
+  "scroll_beyond_last_line": "vertical_scroll_margin",
   "vim_mode": true,
   "indent_guides": {
     "enabled": false
@@ -115,7 +119,7 @@
     "show_type_hints": false
   },
   "edit_predictions": {
-    "provider": "zed",
+    "provider": "copilot",
     "disabled_globs": [],
     "mode": "eager"
   },
