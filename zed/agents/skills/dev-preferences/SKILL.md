@@ -152,6 +152,12 @@ After completing a step:
 4. Present the next step.
 5. Wait for approval before continuing.
 
+If the user manually edits/lints/adjusts files between steps, re-read the changed files before continuing and re-validate alignment with the approved plan and active skills.
+
+If the reason for the user's manual change is not clear, ask a concise clarifying question before applying additional edits.
+
+Never revert or overwrite user manual changes unless the user explicitly asks for it.
+
 ---
 
 # 5. Existing Project Standards Have Priority
@@ -340,6 +346,8 @@ If tests cannot be run, state that clearly.
 
 Never hide or ignore failing tests.
 
+If a spec/test failure appears to be caused by user manual edits (not by agent changes), report that explicitly and ask for confirmation before modifying those affected areas.
+
 ---
 
 # 11. Database Changes
@@ -508,6 +516,14 @@ Respect all project-configured rules.
 
 Do not bypass, disable, or weaken linting or quality checks simply to make the change pass.
 
+For Ruby/Rails command execution in this project, prefer:
+
+- `DISABLE_SPRING=1 rtk bundle exec rspec <path_or_scope>`
+- `DISABLE_SPRING=1 rtk bundle exec rubocop --cache false <path_or_scope>`
+
+If a command flag is unsupported in the current tool/version, use the closest supported equivalent and report the substitution explicitly.
+Example: if `--no-cache` is not supported, use `--cache false`.
+
 If a check fails:
 
 1. Investigate the failure.
@@ -616,6 +632,8 @@ Never:
 - Claim a command was run when it was not.
 - Claim tests passed when they were not run.
 - Make assumptions about business logic when clarification is needed.
+- Revert or overwrite user manual edits without explicit user request.
+- Auto-fix spec failures caused by user manual changes without confirming first.
 - Provide unnecessarily verbose output.
 
 ---
