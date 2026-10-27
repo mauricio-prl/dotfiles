@@ -7,12 +7,16 @@ disable-model-invocation: false
 ## Core Rules (NO EXCEPTIONS)
 
 ### 1. Subject Declaration
-- **MUST** declare `subject` at the beginning of EVERY `describe` or `context` block
+
+- Every `describe` with examples **MUST** declare `subject` at the beginning.
+- `context` blocks should declare `subject` when they change the observed return/result or when explicit local subject improves clarity.
+- `context` blocks may inherit the parent `subject` when behavior is unchanged and readability remains clear.
 - Pattern: `subject(:name) { described_class.new(arg) }`
 - If you're testing a method that returns a value, make the subject BE that method call
 - Example: `subject(:result) { parser.parse }` not `subject(:parser) { described_class.new(...) }`
 
 ### 2. One Expectation Per It Block (STRICT)
+
 - **ONLY ONE `expect()` statement per `it` block - NO EXCEPTIONS**
 - If you need to check multiple things, create multiple `it` blocks
 - ❌ WRONG:
@@ -29,6 +33,7 @@ disable-model-invocation: false
   ```
 
 ### 3. Let Variables (ALL DATA)
+
 - **ALL test data must come from `let` variables - NEVER hardcode in it blocks**
 - All test data, even inline strings, should be extracted to `let` if they might need changing
 - Override `let` values in contexts to test different scenarios
@@ -43,11 +48,13 @@ disable-model-invocation: false
 ### 4. It Block Formatting (Line Length Rule)
 
 **Use `it { ... }` (single-line braces) WHEN IT FITS:**
+
 - "Fits" = entire line is under ~100 characters including indentation
 - `it { expect(proxy.external_order_id).to eq(transaction_id) }` ✅
 - `it { expect(proxy.request).to include('Appraisal Appeal') }` ✅
 
 **Use `it do ... end` (multi-line) WHEN IT DOESN'T FIT:**
+
 - Line is too long with braces
 - `it do` followed by expect on next line
 - Multiple lines for continuation (with `\`)
@@ -68,6 +75,7 @@ disable-model-invocation: false
 ### 5. Hash Formatting in Let Variables
 
 **Preferred (horizontal when it fits):**
+
 ```ruby
 let(:content) do
   { 'TransactionID' => transaction_id,
@@ -78,6 +86,7 @@ end
 
 **Breaking nested hashes to keep line length reasonable:**
 When a single line gets too long (>100 chars), break nested hashes while keeping opening `{` on the same line as the key:
+
 ```ruby
 let(:revision_content) do
   { 'TransactionID' => '13520355-4545455000AM',
@@ -94,6 +103,7 @@ end
 ```
 
 **Key points for nested hash breaks:**
+
 - Nested hash opening `{` stays on same line as the key (e.g., `'Product' => {`)
 - Content of nested hash continues on next line, indented consistently
 - Closing `}` aligns properly with opening key
@@ -102,6 +112,7 @@ end
 - Avoids wasteful blank-line expansion
 
 **Fallback (vertical - ONLY if you can't break reasonably):**
+
 ```ruby
 let(:event_data) do
   { 'Comment' => event_comment,
@@ -115,6 +126,7 @@ end
 ```
 
 **AVOID (wasteful spacing):**
+
 ```ruby
 let(:content) do
   {
@@ -130,6 +142,7 @@ end
 ```
 
 ### 6. Describe/Context Naming
+
 - Instance methods: `describe '#method_name'`
 - Class methods: `describe '.method_name'`
 - Context blocks: descriptive names without `it` prefix
@@ -139,12 +152,14 @@ end
 ### 7. Mocks and Spies (Prefer `have_received`)
 
 **ALWAYS prefer `have_received` over `receive` when possible:**
+
 - Use `spy()` to create a spy instance
 - Mock the class to return the spy
 - Call the code being tested
 - Then assert with `have_received()`
 
 ✅ RIGHT (use `have_received`):
+
 ```ruby
 let(:workflow_service) { spy(Ordering::ClientRequestWorkflowService) }
 
@@ -161,6 +176,7 @@ end
 ```
 
 ❌ WRONG (only use `receive` as last resort):
+
 ```ruby
 it do
   expect_any_instance_of(Ordering::ClientRequestWorkflowService)
@@ -176,6 +192,7 @@ end
 Use `let!` **only** when the variable is referenced by name somewhere in the spec. If it exists purely for its side effect (database record creation, stub setup, etc.), use `before` instead.
 
 ❌ WRONG (`let!` not referenced anywhere):
+
 ```ruby
 context 'when vendor has no insurance' do
   let!(:ordering_vendor) { create(:ordering_vendor_user, id: vendor.id, skip_insurance: true) }
@@ -185,6 +202,7 @@ end
 ```
 
 ✅ RIGHT (pure side effect → `before`):
+
 ```ruby
 context 'when vendor has no insurance' do
   before { create(:ordering_vendor_user, id: vendor.id, skip_insurance: true) }
@@ -194,6 +212,7 @@ end
 ```
 
 When multiple side-effect setups belong to the same context, group them in a single `before do...end`:
+
 ```ruby
 context 'when vendor has an expired license' do
   before do
@@ -206,6 +225,7 @@ end
 ```
 
 ### 9. What NOT To Do
+
 - ❌ Custom helper methods in specs (extract to factory or shared helper)
 - ❌ Test private/protected methods directly
 - ❌ Hardcoded values in it blocks (use let)
@@ -215,20 +235,76 @@ end
 - ❌ Using `include()` matcher when you need exact value (use `eq()`)
 - ❌ Using `expect_any_instance_of(...).to receive()` - use spy + `have_received` instead
 
+### 10. Templates (use as baseline)
+
+#### Listener spec template
+
+```ruby
+describe Namespace::OnSomething do
+  let(:event) { EventClass.new(data: event_data) }
+  let(:event_data) { { ... } }
+
+  describe '#call' do
+    subject(:call) { described_class.new.call(event) }
+
+    context 'when ...' do
+      subject(:result) do
+        call
+        record.reload.some_field
+      end
+
+      it { expect(result).to eq(expected_value) }
+    end
+  end
+end
+```
+
+#### Service spec template
+
+```ruby
+describe Namespace::Service do
+  let(:arg) { ... }
+
+  describe '#call' do
+    subject(:result) { described_class.new(arg).call }
+
+    context 'when ...' do
+      it { expect(result).to eq(expected) }
+    end
+  end
+end
+```
+
+### 11. Spec Definition of Done (required before marking complete)
+
+- [ ] 1 `expect` per `it`
+- [ ] No hardcoded assertion values inside `it` (use `let`)
+- [ ] `subject` declaration follows Rule 1 (explicit or intentionally inherited)
+- [ ] Changed spec file keeps existing local formatting style
+- [ ] Run targeted spec:
+  - `DISABLE_SPRING=1 rtk bundle exec rspec <spec_path>`
+- [ ] Run lint on changed spec file:
+  - `DISABLE_SPRING=1 rtk bundle exec rubocop --cache false <spec_path>`
+- [ ] Only then report the spec update as done
+
 ## When Modifying Existing Specs
 
 **CRITICAL:** If you make edits to a spec file, PRESERVE the existing formatting:
+
 - If `let` variables use horizontal hashes, keep them horizontal
 - If `it { ... }` blocks are single-line, don't expand them to `do/end`
 - If someone already formatted it correctly, don't "improve" it
 - Only change what's necessary for your update
 
 ## RuboCop Configuration
-- Run `bundle exec rubocop` on your spec files before committing
+
+- Run lint for changed spec files before committing:
+  - `DISABLE_SPRING=1 rtk bundle exec rubocop --cache false <spec_path>`
 - This project uses RSpec linting rules - violations will fail CI
 - Common violations: MultipleExpectations, DescribedClass misuse, etc.
 
 ## Reference Examples
+
 - Look at existing specs in the same directory for the same provider/module
 - Example pattern files are your best reference for the exact formatting style
 - When in doubt, match the style of recently-written tests in the same area
