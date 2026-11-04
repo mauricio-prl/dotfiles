@@ -50,7 +50,7 @@
     },
     "auto_compact": {
       "enabled": true,
-      "threshold": "20%"
+      "threshold": "50%"
     },
     "inline_assistant_model": {
       "provider": "copilot_chat",
