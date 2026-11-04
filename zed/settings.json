@@ -13,7 +13,11 @@
   "cursor_animation": {
     "enabled": false
   },
-  "agent_servers": {},
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
   "cli_default_open_behavior": "new_window",
   "collaboration_panel": {
     "dock": "right"
@@ -35,10 +39,18 @@
       "default": "confirm"
     },
     "default_model": {
-      "effort": "medium",
+      "effort": "low",
       "enable_thinking": true,
       "provider": "copilot_chat",
       "model": "gpt-5.3-codex"
+    },
+    "compaction_model": {
+      "provider": "copilot_chat",
+      "model": "claude-haiku-4.5"
+    },
+    "auto_compact": {
+      "enabled": true,
+      "threshold": "20%"
     },
     "inline_assistant_model": {
       "provider": "copilot_chat",
