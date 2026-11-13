@@ -224,7 +224,36 @@ context 'when vendor has an expired license' do
 end
 ```
 
-### 9. What NOT To Do
+### 9. Stateful Specs (Project Convention)
+
+For specs that verify persisted state after executing an action (listeners, services, handlers, jobs, etc.), prefer this structure unless an existing file clearly uses a different local pattern:
+
+- Keep one top-level execution subject in the main `describe` (e.g. `subject(:call) { described_class.new.call(event) }`).
+- Prefer `let!` for records that must exist before execution and are part of the scenario setup.
+- Prefer a shared `before { call }` (or equivalent action) when examples only validate state after execution.
+- Avoid per-context `subject` declarations when plain assertions on reloaded records are enough.
+- Keep contexts focused on input/setup variation, not execution mechanics.
+
+Example pattern:
+
+```ruby
+describe Namespace::OnSomething do
+  describe '#call' do
+    subject(:call) { described_class.new.call(event) }
+
+    let(:event) { EventClass.new(data: event_data) }
+    let!(:record) { create(:some_record, some_field: old_value) }
+
+    before { call }
+
+    context 'when ...' do
+      it { expect(record.reload.some_field).to eq(expected_value) }
+    end
+  end
+end
+```
+
+### 10. What NOT To Do
 
 - ❌ Custom helper methods in specs (extract to factory or shared helper)
 - ❌ Test private/protected methods directly
@@ -235,7 +264,7 @@ end
 - ❌ Using `include()` matcher when you need exact value (use `eq()`)
 - ❌ Using `expect_any_instance_of(...).to receive()` - use spy + `have_received` instead
 
-### 10. Templates (use as baseline)
+### 11. Templates (use as baseline)
 
 #### Listener spec template
 
@@ -275,16 +304,14 @@ describe Namespace::Service do
 end
 ```
 
-### 11. Spec Definition of Done (required before marking complete)
+### 12. Spec Definition of Done (required before marking complete)
 
 - [ ] 1 `expect` per `it`
 - [ ] No hardcoded assertion values inside `it` (use `let`)
 - [ ] `subject` declaration follows Rule 1 (explicit or intentionally inherited)
 - [ ] Changed spec file keeps existing local formatting style
-- [ ] Run targeted spec:
-  - `DISABLE_SPRING=1 rtk bundle exec rspec <spec_path>`
-- [ ] Run lint on changed spec file:
-  - `DISABLE_SPRING=1 rtk bundle exec rubocop --cache false <spec_path>`
+- [ ] Run targeted spec and lint in the same command line, decreasing the token consumption:
+  - `DISABLE_SPRING=1 rtk bundle exec rspec <spec_path>; DISABLE_SPRING=1 rtk bundle exec rubocop --cache false <spec_path>`
 - [ ] Only then report the spec update as done
 
 ## When Modifying Existing Specs

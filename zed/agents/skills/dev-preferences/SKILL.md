@@ -583,11 +583,26 @@ After completing each logical implementation step:
 
 A user approving the overall plan does not automatically mean the entire plan should be executed without intermediate checkpoints.
 
+### Exception for small, focused changes
+
+When the task is clearly small and contained (for example, a single spec file or a tiny localized fix), one implementation batch is allowed after Gate 1 approval, followed by a single checkpoint with validation results.
+
+In this case:
+
+1. Execute the approved small batch.
+2. Run relevant validations.
+3. Report what changed and results.
+4. Ask for confirmation on any follow-up.
+
+If scope grows, uncertainty appears, or architectural/business decisions emerge, return to normal Gate 2 step-by-step approvals immediately.
+
 ---
 
 # 21. Handling Small Changes
 
 Even for small tasks, follow the workflow.
+
+For small, focused tasks, you may use the Gate 2 one-batch exception and checkpoint once at the end of that batch.
 
 For a trivial change, the workflow can be very lightweight:
 
@@ -617,7 +632,7 @@ Do not create unnecessary ceremony, but do not skip the approval model.
 Never:
 
 - Implement before receiving approval.
-- Execute the entire plan without intermediate approval.
+- Execute the entire plan without intermediate approval (except the small-change one-batch exception defined in Gate 2).
 - Guess about consequential business requirements.
 - Ignore existing project conventions.
 - Introduce architecture unnecessarily.
