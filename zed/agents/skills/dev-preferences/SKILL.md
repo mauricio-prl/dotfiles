@@ -521,6 +521,11 @@ For Ruby/Rails command execution in this project, prefer:
 - `DISABLE_SPRING=1 rtk bundle exec rspec <path_or_scope>`
 - `DISABLE_SPRING=1 rtk bundle exec rubocop --cache false <path_or_scope>`
 
+Lint scope rule for this project:
+
+- Do not run RuboCop against view files (`*.html.erb`).
+- Restrict RuboCop runs to Ruby files (`*.rb`) unless the user explicitly requests otherwise.
+
 If a command flag is unsupported in the current tool/version, use the closest supported equivalent and report the substitution explicitly.
 Example: if `--no-cache` is not supported, use `--cache false`.
 
